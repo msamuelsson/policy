@@ -1,0 +1,58 @@
+-#  This file is app/views/policyholders/index.html.haml
+.header
+  =render :partial => 'header_form'
+  
+.nav
+  .container
+    %ul.pull-left
+      %li.active
+        = link_to 'Home', policies_path
+      %li
+        -#= link_to 'New Policy', new_policy_path 
+      %li
+        -#= link_to 'New Policyholder', new_policyholder_path    
+    %ul.pull-right
+      %li
+        %a{:href => "#"} Profile
+      %li
+        %a{:href => "#"} Log Out
+      %li
+        %a{:href => "#"} Help
+
+    
+.container-fluid 
+  %h4 My Policyholders  
+  .jumbotron 
+    .policyholder-table
+      %table.table.table-condensed.table-striped.table-bordered
+        %thead
+          %tr
+            %th Id
+            %th Name
+            -#%th Created At
+            -#%th Updated At
+            %th Action
+            
+            
+        %tbody
+        - @policyholders.each do |policyholder|
+          %tr
+            %td= policyholder.id
+            %td= policyholder.name
+            -#%td= policyholder.created_at
+            -#%td= policyholder.updated_at
+            %td
+              = link_to "Show", policyholder_path(policyholder), class: 'btn btn-primary btn-xs'
+              = link_to "Edit", edit_policyholder_path(policyholder), class: 'btn btn-primary btn-xs'
+              = link_to "Destroy", policyholder, :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-danger btn-xs'
+            
+ 
+.container-fluid
+  %p= button_to 'New Policyholder', new_policyholder_path, :method => :get, class: 'btn btn-primary'          
+            
+    
+ 
+
+
+
+

@@ -1,0 +1,15 @@
+-# in app/views/policies/edit.html.haml
+
+%h4 Edit Policy
+-#= render "form"
+= bootstrap_form_for (@policy) do |f|
+ 
+  %p
+    -#= f.label :name, "Name"
+    -#= f.select :policytype, [["Apple"], ["Grape"]], { label: "Choose your favorite fruit:" }, { class: "selectpicker" }
+    = f.select :policytype, Policy.all_policytypes, { label: "Select Policytype:" }, { class: "selectpicker"}
+    -#= f.select :policyholder, Policyholder.all.collect {|p| [p.name, p.id]}, { label: "Select Policyholder:" }, { class: "selectpicker"}
+    -#= f.hidden_field('policyholder_id', :value => @policyholder.id)
+    
+
+  = f.submit "Submit"

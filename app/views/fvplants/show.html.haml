@@ -1,0 +1,21 @@
+-# in app/views/fvplants/show.html.haml
+
+.header
+  =render :partial => 'header_form'
+  
+.container-fluid  
+  %h4 Policy: Fvplants
+  -#%h4 Policyholder: #{@policyholder.name}
+
+  %ul#accidentlist
+    %li Address: #{@fvplant.address}
+    %li GPS: #{@fvplant.gps}
+    %li Construction Year: #{@fvplant.yearofconstruction}
+    %li Plant Typology: #{@fvplant.fvtypology}
+ 
+
+  %p
+    = link_to 'Back to Policies', policies_path
+    = link_to "Edit", edit_fvplant_path(@fvplant)
+    = link_to "Destroy", fvplant_path, :confirm => 'Are you sure?', :method => :delete
+  

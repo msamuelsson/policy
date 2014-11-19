@@ -1,0 +1,68 @@
+-#  This file is app/views/policyholders/new.html.haml
+.header
+  =render :partial => 'header_form'
+  
+.nav
+  .container
+    %ul.pull-left
+      %li.active
+        = link_to 'Home', policies_path
+      %li
+        -#= link_to 'New Policy', new_policy_path 
+      %li
+        = link_to 'Policyholders', policyholders_path    
+    %ul.pull-right
+      %li
+        %a{:href => "#"} Profile
+      %li
+        %a{:href => "#"} Log Out
+      %li
+        %a{:href => "#"} Help  
+        
+.container
+  %h4 New Policyholder
+  = bootstrap_form_for(@policyholder, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f|
+    - if @policyholder.errors.any?
+      .error_messages
+        %h2
+          = pluralize(@policyholder.errors.count, "error")
+          prohibited this policyholder from being saved:
+        %ul
+          - @policyholder.errors.full_messages.each do |msg|
+            %li= msg
+    -#= f.label :name, "Name"
+    = f.text_field :name 
+    -#= f.label :address, "Address"
+    = f.text_field :address
+    -#= f.label :vatnumber, "Vat Number"
+    = f.text_field :vatnumber, :label => "VAT Number"
+    %p
+      = f.submit "Submit"
+  
+%form.form-horizontal{:role => "form"}
+  .form-group
+    %label.col-sm-2.control-label{:for => "inputEmail3"} Name
+    .col-sm-10
+      %input#inputEmail3.form-control
+  .form-group
+    %label.col-sm-2.control-label{:for => "inputPassword3"} Address
+    .col-sm-10
+      %input#inputPassword3.form-control
+  .form-group
+    %label.col-sm-2.control-label{:for => "inputPassword3"} VAT Number
+    .col-sm-10
+      %input#inputPassword3.form-control    
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .checkbox
+        %label
+          %input{:type => "checkbox"}/
+          Remember me
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      %button.btn.btn-primary{:type => "submit"} Submit
+      
+    
+%p
+  = link_to "Cancel", policyholders_path 
+  

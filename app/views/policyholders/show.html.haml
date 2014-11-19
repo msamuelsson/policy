@@ -1,0 +1,20 @@
+-#  This file is app/views/policyholders/show.html.haml
+.header
+  =render :partial => 'header_form'
+%h4 Policyholder: #{@policyholder.name}
+
+%ul#policyholderlist
+  %li Address: #{@policyholder.address}
+  %li VAT Number: #{@policyholder.vatnumber}
+  %li Policies:
+  %ul
+    - for policy in @policyholder.policies
+      %li= policy.policytype
+
+
+%p
+  = link_to 'Back', policyholders_path
+  = link_to "Edit", edit_policyholder_path(@policyholder)
+  = link_to "Destroy", @policyholder, :confirm => 'Are you sure?', :method => :delete
+  -#= link_to "Create Policy", new_policyholder_policy_path(@policyholder)
+  

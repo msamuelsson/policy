@@ -1,0 +1,20 @@
+-# in app/views/accidents/show.html.haml
+
+.header
+  =render :partial => 'header_form'
+  
+.container-fluid  
+  %h4 Policy: Accident
+
+  %ul#accidentlist
+    %li Name: #{@accident.name}
+    %li Address: #{@accident.address}
+    %li Date of Birth: #{@accident.dateofbirth}
+    %li Gender: #{@accident.gender}
+ 
+
+  %p
+    = link_to 'Back to Policies', policies_path
+    = link_to "Edit", edit_accident_path(@accident)
+    = link_to "Destroy", accident_path, :confirm => 'Are you sure?', :method => :delete
+  

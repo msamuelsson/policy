@@ -1,0 +1,47 @@
+-#  This file is app/views/policyholders/edit.html.haml
+.header
+  =render :partial => 'header_form'
+  
+.nav
+  .container
+    %ul.pull-left
+      %li.active
+        = link_to 'Home', policies_path
+      %li
+        = link_to 'New Policy', new_policy_path 
+      %li
+        = link_to 'Policyholders', policyholders_path    
+    %ul.pull-right
+      %li
+        %a{:href => "#"} Profile
+      %li
+        %a{:href => "#"} Log Out
+      %li
+        %a{:href => "#"} Help  
+
+-#%h4 Edit Policyholder
+
+= form_for @policyholder, :html => { :class => 'form-horizontal'} do |f|
+  %fieldset
+    %legend
+      = controller.action_name.capitalize
+      Policyholder
+    .control-group
+      = f.label :name, :class => 'control-label'
+      .controls
+        = f.text_field :name, :class => 'text_field'
+    .control-group
+      = f.label :address, :class => 'control-label'
+      .controls
+        = f.text_field :address, :class => 'text_field'
+    .control-group
+      = f.label :vatnumber, :class => 'control-label'
+      .controls
+        = f.text_field :vatnumber, :class => 'text_field'    
+    .form-actions
+      = f.submit nil, :class => 'btn btn-primary'
+      = link_to 'Cancel', policyholders_path, :class => 'btn'
+
+%p
+  -#= link_to "Show", @policyholder
+  -#= link_to "Cancel", policyholders_path

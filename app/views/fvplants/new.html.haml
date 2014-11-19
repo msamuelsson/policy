@@ -1,0 +1,29 @@
+%h4 New Fvplant
+
+= form_for @fvplant do |f|
+  - if @fvplant.errors.any?
+    .error_messages
+      %h2
+        = pluralize(@fvplant.errors.count, "error")
+        prohibited this fvplant from being saved:
+      %ul
+        - @fvplant.errors.full_messages.each do |msg|
+          %li= msg
+  %p  
+    = f.label :address, "Address"
+    = f.text_field :address
+  %p
+    = f.label :gps, "GPS"
+    = f.text_field :gps 
+  %p  
+    = f.label :yearofconstruction, "Construction Year"
+    = f.text_field :yearofconstruction
+  %p  
+    = f.label :fvtypology, "Plant Typology"
+    = f.text_field :fvtypology
+    
+    =f.hidden_field :policy_id, :value => @policy_id
+  
+  = f.submit "Submit"
+%p
+  = link_to "Cancel", policies_path 

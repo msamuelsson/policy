@@ -1,0 +1,36 @@
+%h4 New Accident
+
+= form_for @accident do |f|
+  - if @accident.errors.any?
+    .error_messages
+      %h2
+        = pluralize(@accident.errors.count, "error")
+        prohibited this accident from being saved:
+      %ul
+        - @accident.errors.full_messages.each do |msg|
+          %li= msg
+  %p
+    = f.label :name, "Name"
+    = f.text_field :name
+  %p  
+    = f.label :address, "Address"
+    = f.text_field :address
+  %p  
+    = f.label :dateofbirth, "Date of Birth"
+    = f.text_field :dateofbirth
+  %p  
+    = f.label :gender, "Gender"
+    = f.text_field :gender
+    
+    =f.hidden_field :policy_id, :value => @policy_id
+  
+  -#= f.fields_for :policies do |builder|
+    -#%p
+      -#= builder.label :policytype, "Policytype"
+      -#= builder.text_field :policytype
+      
+    
+
+  = f.submit "Submit"
+%p
+  = link_to "Cancel", policies_path 

@@ -1,0 +1,9 @@
+-# in app/views/policies/create_policy.html.haml
+
+%h4= @policy.policytype
+%p Policyholder: 
+%p= @policyholder.name
+
+-#%p= @policy.policyholder.name 
+-#= link_to 'Edit', edit_survey_path(@survey)
+= link_to 'Back to Policies', policies_path

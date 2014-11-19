@@ -1,0 +1,49 @@
+-#  This file is app/views/fvplants/index.html.haml
+.header
+  =render :partial => 'header_form'
+  
+.nav
+  .container
+    %ul.pull-left
+      %li.active
+        -#= link_to 'Home', policies_path
+      %li
+        -#= link_to 'New Policy', new_policy_path 
+      %li
+        = link_to 'My Policyholders', policyholders_path    
+    %ul.pull-right
+      %li
+        %a{:href => "#"} Profile
+      %li
+        %a{:href => "#"} Log Out
+      %li
+        %a{:href => "#"} Help
+  
+.container-fluid 
+  %h4 Policy: Fvplants, Policyholder: #{@policyholder.name}
+  .jumbotron 
+    .fvplant-table 
+      %table#fvplant.stripe.compact
+        %thead
+          %tr
+            %th Id
+            %th Address
+            %th GPS
+            %th Construction Year
+            -#%th Updated At
+      
+        %tbody
+        - @all_fvplants.each do |fvplant|
+          -#- policyholder = Policyholder.where(:id => policy.policyholder_id).first
+          %tr
+            %td= fvplant.id
+            %td= fvplant.address
+            %td= fvplant.gps
+            %td= fvplant.yearofconstruction
+            -#%td= policy.updated_at
+            -#%td= link_to "Show Policy", policy_path(policy)
+            -#%td= link_to "Edit Policy", edit_policy_path(policy)
+            -#%td= link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete
+            
+
+%p= link_to "Back to policies", policies_path

@@ -1,0 +1,19 @@
+%h4 New Policy for #{@policyholder.name}
+-#= render "form"
+= bootstrap_form_for (@policy) do |f|
+ 
+  %p
+    -#= f.label :name, "Name"
+    -#= f.select :policytype, [["Apple"], ["Grape"]], { label: "Choose your favorite fruit:" }, { class: "selectpicker" }
+    = f.select :policytype, @all_policytypes, { label: "Select Policytype:" }, { class: "selectpicker"}
+    -#= f.select :policyholder, @policyholder.name, { label: "Select Policyholder:" }, { class: "selectpicker"}
+    = f.hidden_field('policyholder_id', :value => @policyholder.id) 
+  
+  -#= f.fields_for :policies do |builder|
+    -#%p
+      -#= builder.label :policytype, "Policytype"
+      -#= builder.text_field :policytype
+      
+  = f.submit "Submit"
+%p
+  = link_to "Cancel", policyholder_policies_path 
