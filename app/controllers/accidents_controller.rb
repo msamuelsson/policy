@@ -18,7 +18,8 @@ class AccidentsController < ApplicationController
   def create
     @accident = Accident.new(accident_params)
     if @accident.save
-      redirect_to accident_path(@accident), notice: "Successfully created accident."
+      session[:accident_id] = @accident.id
+      redirect_to accident_steps_path
     else
       render :new
     end
@@ -30,8 +31,9 @@ class AccidentsController < ApplicationController
   
   def update
     @accident = Accident.find(params[:id])
-    if @accident.update_attributes(params[:accident])
-      redirect_to @accident, notice: "Successfully updated accident."
+    if @accident.update_attributes(accident_params)
+      session[:accident_id] = @accident.id
+      redirect_to accident_steps_path
     else
       render :edit
     end

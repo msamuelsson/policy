@@ -9,13 +9,11 @@ class PoliciesController < ApplicationController
   def create_policy
     @policy = Policy.new(policy_params)
     if @policy.save
-      #@policyholder = Policyholder.find_by_id(@policy.policyholder_id)
-      #flash[:notice]= "Policy created."
       case @policy.policytype
       when 'accident'
-        #@accident = Accident.new
-        #render :create_accident
         redirect_to new_policy_accident_path(@policy)
+        #session[:policy_id] = @policy.id
+        #redirect_to accident_steps_path
       when 'fvplants'
         redirect_to new_policy_fvplant_path(@policy)
       end   

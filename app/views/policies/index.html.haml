@@ -22,7 +22,8 @@
 .container-fluid 
   %h4 My Policies
   .policy-table 
-    %table.table.table-striped.table-condensed.table-bordered
+    -#%table.table.table-striped.table-condensed.table-bordered
+    %table#table_id.display
       %thead
         %tr
           %th Id
@@ -30,22 +31,19 @@
           %th Policyholder Id
           %th Created At
           %th Action
-          %th 
-          %th 
-              
-      
+                    
       %tbody
-      - @all_policies.each do |policy|
-        - policyholder = Policyholder.where(:id => policy.policyholder_id).first
-        %tr
-          %td= policy.id
-          %td= policy.policytype
-          %td= policyholder.name
-          %td= policy.created_at
-          %td
-            = link_to "Show Policy", policy_path(policy), class: "btn btn-primary btn-xs"
-            = link_to "Edit Policy", edit_policy_path(policy), class: "btn btn-primary btn-xs"
-            = link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-danger btn-xs"
+        - @all_policies.each do |policy|
+          - policyholder = Policyholder.where(:id => policy.policyholder_id).first
+          %tr
+            %td= policy.id
+            %td= policy.policytype
+            %td= policyholder.name
+            %td= policy.created_at
+            %td
+              = link_to "Show Policy", policy_path(policy), class: "btn btn-primary btn-xs"
+              = link_to "Edit Policy", edit_policy_path(policy), class: "btn btn-primary btn-xs"
+              = link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-danger btn-xs"
 
 
 .container-fluid

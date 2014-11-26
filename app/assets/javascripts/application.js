@@ -10,21 +10,24 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-// OBS require tree . is removed because dropdowns did not work
 //= require jquery
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
-// require dataTables/jquery.dataTables.bootstrap3
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require jquery-ui
 //= require jquery.turbolinks
-// require turbolinks
+//= require turbolinks
 //= require twitter/bootstrap
-// require_tree . 
+
+// require_tree . is removed because dropdowns did not work
 
 
 
 $(document).ready( function () {
-    $('#table_id').dataTable();
-} );
+    $('#table_id').DataTable({bPaginate: false, bInfo: false});
+    
+  
+    
+});
 
 

@@ -1,6 +1,6 @@
 jQuery ->
    $('#policy').dataTable()
-    "sPaginationType": "bootstrap"
+#    "sPaginationType": "bootstrap"
      
      
 #jQuery ->

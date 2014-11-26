@@ -1,0 +1,61 @@
+%h4 New Accident
+
+#rootwizard
+  .navbar
+    .navbar-inner
+      .container
+        %ul
+          %li
+            %a{"data-toggle" => "tab", :href => "#tab1"} First
+          %li
+            %a{"data-toggle" => "tab", :href => "#tab2"} Second
+          %li
+            %a{"data-toggle" => "tab", :href => "#tab3"} Third
+         
+  .tab-content
+    #tab1.tab-pane
+      1
+      = form_for @accident do |f|
+        %p
+          = f.label :name, "Name"
+          = f.text_field :name
+        %p  
+          = f.label :address, "Address"
+          = f.text_field :address
+        %p
+          =f.hidden_field :policy_id, :value => @policy_id
+        %p  
+          = f.submit "Continue"   
+        
+    #tab2.tab-pane
+      2
+      = form_for @accident do |f|
+        %p  
+          = f.label :dateofbirth, "Date of Birth"
+          = f.text_field :dateofbirth
+        %p  
+          = f.label :gender, "Gender"
+          = f.text_field :gender
+        %p  
+          = f.submit "Submit" 
+      
+    #tab3.tab-pane
+      3
+    
+    %ul.pager.wizard
+      %li.previous.first{:style => "display:none;"}
+        %a{:href => "#"} First
+      %li.previous
+        %a{:href => "#"} Previous
+      %li.next.last{:style => "display:none;"}
+        %a{:href => "#"} Last
+      %li.next
+        %a{:href => "#"} Next
+      
+
+  
+    
+
+  -#= f.submit "Submit"
+%p
+  = link_to "Cancel", policies_path 

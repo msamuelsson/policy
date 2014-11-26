@@ -68,3 +68,6 @@ gem "sprockets-rails"
 gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails'
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'bootstrap3' 
+
+#Rails Wizard controller
+gem 'wicked'

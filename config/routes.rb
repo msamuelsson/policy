@@ -65,6 +65,7 @@ Rails.application.routes.draw do
    
    resources :accidents
    resources :fvplants
+   resources :accident_steps
    
    #Route that posts 'Create Policy' form
    post '/policies/create_policy'
