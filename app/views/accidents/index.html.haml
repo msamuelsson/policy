@@ -47,7 +47,7 @@
 .container-fluid 
   %h4 Policy: Accidents, Policyholder: #{@policyholder.name}
   .accident-table 
-    %table.table.table-striped.table-bordered.table-condensed
+    %table#table_id.display
       %thead
         %tr
           %th Id
@@ -55,21 +55,23 @@
           %th Address
           %th Date of Birth
           %th Gender
+          %th Action
           -#%th Updated At
       
       %tbody
-      - @all_accidents.each do |accident|
-        -#- policyholder = Policyholder.where(:id => policy.policyholder_id).first
-        %tr
-          %td= accident.id
-          %td= accident.name
-          %td= accident.address
-          %td= accident.dateofbirth
-          %td= accident.gender
-          -#%td= policy.updated_at
-          -#%td= link_to "Show Policy", policy_path(policy)
-          -#%td= link_to "Edit Policy", edit_policy_path(policy)
-          -#%td= link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete
+        - @all_accidents.each do |accident|
+          -#- policyholder = Policyholder.where(:id => policy.policyholder_id).first
+          %tr
+            %td= accident.id
+            %td= accident.name
+            %td= accident.address
+            %td= accident.dateofbirth
+            %td= accident.gender
+            %td= link_to "Edit Policy", edit_accident_path(accident)
+            -#%td= policy.updated_at
+            -#%td= link_to "Show Policy", policy_path(policy)
+            -#%td= link_to "Edit Policy", edit_policy_path(policy)
+            -#%td= link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete
          
   
  
