@@ -1,20 +1,19 @@
-= form_for @policyholdr do |f|
-  %fieldset
-    %legend
-      = controller.action_name.capitalize
-      Policyholder
-    .control-group
-      = f.label :name, :class => 'control-label'
-      .controls
-        = f.text_field :name, :class => 'text_field'
-    .control-group
-      = f.label :address, :class => 'control-label'
-      .controls
-        = f.text_field :address, :class => 'text_field'
-    .control-group
-      = f.label :vatnumber, :class => 'control-label'
-      .controls
-        = f.text_field :vatnumber, :class => 'text_field'    
-    .form-actions
-      = f.submit nil, :class => 'btn btn-primary'
-      = link_to 'Cancel', policyholders_path, :class => 'btn'
+-# in _form.html.haml (the partial)
+
+= bootstrap_form_for(@policyholder, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f|
+  - if @policyholder.errors.any?
+    .error_messages
+      %h2
+        = pluralize(@policyholder.errors.count, "error")
+        prohibited this policyholder from being saved:
+      %ul
+        - @policyholder.errors.full_messages.each do |msg|
+          %li= msg
+  %legend
+    = controller.action_name.capitalize
+    Policyholder        
+  = f.text_field :name 
+  = f.text_field :address
+  = f.text_field :vatnumber, :label => "VAT Number"
+  = f.form_group do
+    = f.submit "Submit", :class => 'btn btn-primary btn-sm'

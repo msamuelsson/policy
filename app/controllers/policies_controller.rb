@@ -59,7 +59,7 @@ class PoliciesController < ApplicationController
   
   def edit
     @all_policyholders = Policyholder.all
-    @policy = Policy.find(params[:id])  
+    @policy = Policy.find(params[:id]) 
   end
   
   def update

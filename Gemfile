@@ -53,7 +53,7 @@ gem 'execjs'
 gem 'therubyracer'
 
 # use rails_bootstrap_forms
-gem 'bootstrap_forms'
+gem 'bootstrap_form'
 
 gem 'jquery-ui-rails'
 
@@ -69,5 +69,8 @@ gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'bootstrap3' 
 
-#Rails Wizard controller
+# Rails Wizard controller
 gem 'wicked'
+
+# Rails form gem
+gem 'simple_form'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111131909) do
+ActiveRecord::Schema.define(version: 20141127142046) do
 
   create_table "accidents", force: true do |t|
     t.string   "name"
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 20141111131909) do
     t.integer  "policy_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "taxcode"
+    t.string   "weight"
+    t.string   "height"
+    t.string   "occupation"
+    t.string   "smoker"
+    t.string   "typeofsmoke"
+    t.string   "smokequantity"
+    t.date     "stopdate"
+    t.string   "alcohol"
+    t.string   "typeofalcohol"
+    t.string   "alcoholquantity"
+    t.string   "nrflights"
+    t.string   "motorkm"
   end
 
   create_table "fvplants", force: true do |t|

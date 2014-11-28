@@ -26,8 +26,43 @@
 $(document).ready( function () {
     $('#table_id').DataTable({bPaginate: false, bInfo: false});
     
-  
+    var isSmoker = $('input:checked[name="accident[smoker]"]').val() == "Yes";    	
+    if (isSmoker) {
+    	$('#smoker').show();
+    } else {
+    	//var typeofsmoke = document.getElementById("accident_typeofsmoke");
+    	//typeofsmoke.value = "";
+    	$('#smoker').hide(); 
+    }
+
+	$('input[name="accident[smoker]"]').change(function() {
+    	var isSmoker = $('input:checked[name="accident[smoker]"]').val() == "Yes";    	
+    	if (isSmoker) {
+    		$('#smoker').show();
+    	} else {
+    		var typeofsmoke = document.getElementById("accident_typeofsmoke");
+    		var smokequantity = document.getElementById("accident_smokequantity");
+    		typeofsmoke.value = "";
+    		smokequantity.value = "";
+    		$('#smoker').hide(); 
+    	}		
+	});
+	
+	$('#alcohol').hide();
+	
+	$('input[name="accident[alcohol]"]').change(function() {
+    	var isAlcohol = $('input:checked[name="accident[alcohol]"]').val() == "Yes";
+    	$('#alcohol').toggle(isAlcohol);
+	});
     
 });
+
+
+    
+  
+    
+
+
+
 
 

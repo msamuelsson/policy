@@ -1,0 +1,74 @@
+-# in _personaldata_form.html.haml (the partial)
+
+= bootstrap_form_for(@accident, layout: :default) do |f|
+  - if @accident.errors.any?
+    .error_messages
+      %h2
+        = pluralize(@accident.errors.count, "error")
+        prohibited this @accident from being saved:
+      %ul
+        - @accident.errors.full_messages.each do |msg|
+          %li= msg
+         
+  = f.text_field :name, :label => 'Full Name'
+  = f.text_field :address, :label => 'Full Address'
+  .row
+    .col-sm-6
+      = f.text_field :dateofbirth, :label => 'Date of Birth'
+    .col-sm-6
+      = f.text_field :taxcode, :label => 'Tax code'
+  
+  -# Gender inline check-box
+  = f.label "Gender"
+  = f.form_group :gender do
+    = f.radio_button :gender, 0, label: "Female", inline: true
+    = f.radio_button :gender, 1, label: "Male", inline: true
+ 
+  
+  .row
+    .col-sm-6
+      = f.text_field :weight, :label => 'Weight in Kg'
+    .col-sm-6
+      = f.text_field :height, :label => 'Height in cm'
+     
+      
+  = f.text_field :occupation, :label => 'Occupation (state all)'
+  %hr
+  -# Smoker inline check-box
+  = f.label "Do you smoke?"
+  = f.form_group :smoker do
+    = f.radio_button :smoker, 0, label: "Yes", inline: true
+    = f.radio_button :smoker, 1, label: "No", inline: true
+ 
+  = f.label "If yes:"
+  .row  
+    .col-sm-6
+      = f.text_field :typeofsmoke, :label => 'What do you smoke?'
+    .col-sm-6
+      = f.text_field :smokequantity, :label => 'How much do you smoke?'
+  = f.label "If you stopped smoking, state the date:"  
+  .row
+    .col-sm-6 
+      = f.date_field :stopdate, hide_label: :true
+    .col-sm-6  
+  %hr
+  -# Alcohol inline checkbox
+  = f.label "Do you drink alcohol?"
+  = f.form_group :alcohol do
+    = f.check_box :alcohol, label: "Yes", inline: true
+    = f.check_box :alcohol, label: "No", inline: true
+  = f.label "If yes:"
+  .row
+    .col-sm-6
+      = f.text_field :typeofalcohol, :label => 'What do you drink?'
+    .col-sm-6  
+      = f.text_field :alcoholquantity, :label => 'How much do you drink?'
+  %hr
+  = f.text_field :nrflights, :label => 'Please state approximate number of flights as a passenger on scheduled flight for the next year'
+  = f.text_field :motorkm, :label => 'Please state average kilometers per year on motor vehicles'
+
+  
+  
+  .pull-right
+    = f.form_group do
+      = f.submit "Continue", :class => 'btn btn-primary btn-sm'

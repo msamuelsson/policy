@@ -1,0 +1,64 @@
+-# in _personal_simpleform.html.haml (the partial)
+
+= simple_form_for @accident do |f|
+  - if @accident.errors.any?
+    .error_messages
+      %h2
+        = pluralize(@accident.errors.count, "error")
+        prohibited this @accident from being saved:
+      %ul
+        - @accident.errors.full_messages.each do |msg|
+          %li= msg
+         
+  = f.input :name, :label => 'Full Name'
+  = f.input :address, :label => 'Full Address'
+  .row
+    .col-sm-6
+      = f.input :dateofbirth, :label => 'Date of Birth'
+    .col-sm-6
+      = f.input :taxcode, :label => 'Tax code'
+  
+  .row
+    .col-sm-2   
+      = f.input :gender, as: :radio_buttons, collection: ["Male", "Female"]
+    .col-sm-5
+      = f.input :weight, :label => 'Weight in Kg'
+    .col-sm-5
+      = f.input :height, :label => 'Height in cm'
+     
+      
+  = f.input :occupation, :label => 'Occupation (state all)'
+  %hr
+  
+  = f.input :smoker, as: :radio_buttons, collection: ["Yes", "No"], :label => "Do you smoke?"
+ 
+  %div#smoker
+    .row  
+      .col-sm-6
+        = f.input :typeofsmoke, :label => 'What do you smoke?'
+      .col-sm-6
+        = f.input :smokequantity, :label => 'How much do you smoke?'
+      
+  = f.label "If you stopped smoking, state the date:"  
+  .row
+    .col-sm-6 
+      = f.input :stopdate, hide_label: :true
+    .col-sm-6  
+  %hr
+  -# Alcohol inline checkbox
+  = f.input :alcohol, as: :radio_buttons, collection: ["Yes", "No"], :label => "Do you drink alcohol?"
+ 
+  %div#alcohol
+    .row
+      .col-sm-6
+        = f.input :typeofalcohol, :label => 'What do you drink?'
+      .col-sm-6  
+        = f.input :alcoholquantity, :label => 'How much do you drink?'
+  %hr
+  = f.input :nrflights, :label => 'Please state approximate number of flights as a passenger on scheduled flight for the next year'
+  = f.input :motorkm, :label => 'Please state average kilometers per year on motor vehicles'
+
+  
+  
+  .pull-right
+    = f.submit "Continue", :class => 'btn btn-primary btn-sm'

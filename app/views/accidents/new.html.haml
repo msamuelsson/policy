@@ -1,18 +1,10 @@
-%h4 New Accident
-
-%h3 Enter Name and Address
-= form_for @accident do |f|
-    
-  = f.label :name, "Name"
-  = f.text_field :name
-   
-  = f.label :address, "Address"
-  = f.text_field :address
+.container
+  %h3 Accident and Illness
+.container.forminfo
+  %h4.bg-info The following questions are related to the person to be insured.
+.container
+  =render :partial => 'personal_simpleform'
  
-  =f.hidden_field :policy_id, :value => @policy_id
-      
-   
-  = f.submit "Continue"
  
 %p
   = link_to "Cancel", policies_path 

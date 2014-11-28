@@ -48,7 +48,7 @@ class AccidentsController < ApplicationController
   private
   def accident_params
     #params.require(:policy).permit(:policytype, :policyholder_id, policyholder_attributes: [:id, :name, :_destroy])
-    params.require(:accident).permit(:name, :address, :dateofbirth, :gender, :policy_id)
+    params.require(:accident).permit(:policy_id, :name, :address, :dateofbirth, :taxcode, :gender, :weight, :height, :occupation, :smoker, :typeofsmoke, :smokequantity, :stopdate, :alcohol, :typeofalcohol, :alcoholquantity, :nrflights, :motorkm)
   end
 end
 

@@ -42,7 +42,7 @@
             %td= policy.created_at
             %td
               = link_to "Show Policy", policy_path(policy), class: "btn btn-primary btn-xs"
-              = link_to "Edit Policy", edit_policy_path(policy), class: "btn btn-primary btn-xs"
+              -#= link_to "Edit Policy", edit_accident_path(policy), class: "btn btn-primary btn-xs"
               = link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-danger btn-xs"
 
 
@@ -51,7 +51,7 @@
     %h4 Create a new policy
     .row
       = form_for @new_policy, :url => { :action => "create_policy" }  do |f|
-        .col-md-3
+        .col-md-4
           Select Policytype: #{f.select :policytype, Policy.all_policytypes}
         .col-md-4  
           Select Policyholder: #{f.select :policyholder_id, @all_policyholders.map {|p| [p.name,p.id]}}
