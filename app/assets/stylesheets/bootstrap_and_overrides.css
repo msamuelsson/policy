@@ -49,11 +49,24 @@
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
 }
 
-hr {
-	border-width: 0px;
-	margin-top: 30px;
-	margin-bottom: 30px;
+/* Form for accident, evalquest */
+#evalquest.form-group {
+	height: 45px;
+	margin-bottom: 10px;
 }
-.forminfo {
-	margin-bottom: 30px;
+
+#evalquest.form-group label {
+	padding-top: 9px;
 	
+}
+
+.evalquest2 {
+	margin-top: 40px;
+}
+
+.forminfo {
+	margin-bottom: 30px;	
+}
+	
+
+

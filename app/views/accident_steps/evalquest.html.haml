@@ -1,0 +1,138 @@
+-# app/views/accident_steps/evalquest.html.haml
+
+.container
+  %h3 Accident and Illness
+.container.forminfo
+  %h4.bg-info The following questions will allow us to fully evaluate the extent of your coverage. Please note that terms and cost may vary following the inclusion or not of the activities indicated below. Please also note that some activities are always excluded from coverage. For more information please refer to the policy wording or ask directly your broker.
+
+.container
+  = simple_form_for(@accident, url: wizard_path) do |f|
+  
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Flights other than as a passenger?'
+      .col-sm-1
+        = f.input :flightnonpassenger, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3
+        = f.input :flightnonpassenger, as: :radio_buttons, collection: ["No"], :label => false
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Flights other than using scheduled flights?'
+      .col-sm-1
+        = f.input :flightnonscheduled, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :flightnonscheduled, as: :radio_buttons, collection: ["No"], :label => false
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Travel abroad for business or leisure?'
+      .col-sm-1
+        = f.input :travelabroad, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :travelabroad, as: :radio_buttons, collection: ["No"], :label => false  
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Winter Sports?'
+      .col-sm-1
+        = f.input :wintersport, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :wintersport, as: :radio_buttons, collection: ["No"], :label => false    
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Scuba Diving?'
+      .col-sm-1
+        = f.input :scubadiving, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :scubadiving, as: :radio_buttons, collection: ["No"], :label => false
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Mountainering with use of ropes and guides?'
+      .col-sm-1
+        = f.input :mountainering, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :mountainering, as: :radio_buttons, collection: ["No"], :label => false
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Potholing?'
+      .col-sm-1
+        = f.input :potholing, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :potholing, as: :radio_buttons, collection: ["No"], :label => false
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Hang-gliding or parachuting?'
+      .col-sm-1
+        = f.input :hanggliding, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :hanggliding, as: :radio_buttons, collection: ["No"], :label => false
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Hunting on horseback, horse riding?'
+      .col-sm-1
+        = f.input :horseriding, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :horseriding, as: :radio_buttons, collection: ["No"], :label => false   
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Participation to any kind of runnig, race or competition?'
+      .col-sm-1
+        = f.input :runningrace, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :runningrace, as: :radio_buttons, collection: ["No"], :label => false   
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Do you drive motor cycles or a scooter?'
+      .col-sm-1
+        = f.input :scooter, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :scooter, as: :radio_buttons, collection: ["No"], :label => false   
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Any other sports, occupation or pastime which is likely to increase the risk of an accident?'
+      .col-sm-1
+        = f.input :increasedrisk, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :increasedrisk, as: :radio_buttons, collection: ["No"], :label => false   
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Do you suffer from defective hearing or vision?'
+      .col-sm-1
+        = f.input :defectivehearing, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :defectivehearing, as: :radio_buttons, collection: ["No"], :label => false   
+    
+    .form-group#evalquest
+      .col-sm-6
+        = f.label 'Any condition in the past 5 years needing medical advice or treatment, or any symptoms or tendency that might necessitate this in the future?'
+      .col-sm-1
+        = f.input :medicaltreatment, as: :radio_buttons, collection: ["Yes"], :label => false
+      .col-sm-3  
+        = f.input :medicaltreatment, as: :radio_buttons, collection: ["No"], :label => false 
+
+
+    .evalquest2
+      = f.input :yesdetails, :label => 'If you have answered yes to any of the above questions, please give full details'
+      = f.input :accidents, :label => 'What accidents have prevented you from attending to your business or occupation for periods of more than 7 days during the past 5 years?' 
+    
+    .row
+      .col-sm-2
+        = f.input :insured, as: :radio_buttons, collection: ["Yes", "No"], :label => "Are you insured?"
+      %div#insured 
+        .col-sm-10
+          = f.input :yesinsured, as: :text, :label => 'If yes, please state with whom and for what sum?'
+        
+    .row
+      .col-sm-5
+        = f.input :declinedcoverage, as: :radio_buttons, collection: ["Yes", "No"], :label => "Have you ever been declined coverage, given coverage at special terms or had your accident policy not renewed or had it cancelled?"
+      %div#declinedcoverage
+        .col-sm-7
+          = f.input :yesdeclined, as: :text, :label => 'If yes, please give details.' 
+ 
+    .evalquest2
+      -#= f.submit "Previous", :name => "back_button", :class => 'btn btn-primary btn-sm'
+      = f.submit "Previous", :name => "editaccident_button", :class => 'btn btn-primary btn-sm'
+      = f.submit "Continue", :class => 'btn btn-primary btn-sm'
+    
+ 
+%p
+  = link_to "Cancel", policies_path
+  

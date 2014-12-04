@@ -1,0 +1,34 @@
+-# app/views/accident_steps/confirmation.html.haml
+
+.container
+  %h3 Accident and Illness
+  
+.container
+  = simple_form_for(@accident, url: wizard_path) do |f|
+  
+    = f.input :name, :label => 'Could you confirm that the maximum Sum Insured for the benefit “Accidental Death” or “Permanent Disablement by Accident” is not higher than 10 times your annual gross income from your principal occupation?'
+    = f.input :name, :label => 'If you have requested the benefit “Accidental Death” could you please state the beneficiaries to be inserted in policy?'
+    
+    .row
+      .col-sm-2
+        %h5.bg-info Dichiarazione
+    %p.bg-info To the best of my knowledge and belief, the information provided in connection with this proposal, whether in my own hand or not, is true and I have not withheld any material facts. I understand that non- disclosure or misrepresentation of a material fact may entitle Underwriters to void the insurance. I understand that Underwriters will determine their terms and conditions upon the information provided in connection with this proposal; and I further understand that the signing of this proposal does not bind me to complete, or Underwriters to accept, this Insurance.
+    
+    .row
+      .col-sm-6
+        = f.input :name, :label => 'Signature of the Assured'
+      .col-sm-6  
+        = f.input :name, :label =>'Date'
+        
+    .row
+      .col-sm-6
+        = f.input :name, :label => 'Signature of the Policy Holder (if required)'
+      .col-sm-6  
+        = f.input :name, :label =>'Date'  
+    = f.input :name, :label => 'Additional Information' 
+    .evalquest2
+      = f.submit "Previous", :name => "back_button", :class => 'btn btn-primary btn-sm'
+      = f.submit "Confirm", :class => 'btn btn-primary btn-sm' 
+      
+%p
+  = link_to "Cancel", policies_path          

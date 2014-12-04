@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127142046) do
+ActiveRecord::Schema.define(version: 20141203153917) do
 
   create_table "accidents", force: true do |t|
     t.string   "name"
@@ -34,6 +34,26 @@ ActiveRecord::Schema.define(version: 20141127142046) do
     t.string   "alcoholquantity"
     t.string   "nrflights"
     t.string   "motorkm"
+    t.string   "flightnonpassenger"
+    t.string   "flightnonscheduled"
+    t.string   "travelabroad"
+    t.string   "wintersport"
+    t.string   "scubadiving"
+    t.string   "mountainering"
+    t.string   "potholing"
+    t.date     "hanggliding"
+    t.string   "horseriding"
+    t.string   "runningrace"
+    t.string   "scooter"
+    t.string   "increasedrisk"
+    t.string   "defectivehearing"
+    t.string   "medicaltreatment"
+    t.text     "yesdetails"
+    t.text     "accidents"
+    t.string   "insured"
+    t.text     "yesinsured"
+    t.string   "declinedcoverage"
+    t.text     "yesdeclined"
   end
 
   create_table "fvplants", force: true do |t|

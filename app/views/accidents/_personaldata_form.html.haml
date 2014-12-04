@@ -1,6 +1,6 @@
--# in _personaldata_form.html.haml (the partial)
+-# in _personal_simpleform.html.haml (the partial)
 
-= bootstrap_form_for(@accident, layout: :default) do |f|
+= simple_form_for @accident do |f|
   - if @accident.errors.any?
     .error_messages
       %h2
@@ -9,66 +9,60 @@
       %ul
         - @accident.errors.full_messages.each do |msg|
           %li= msg
-         
-  = f.text_field :name, :label => 'Full Name'
-  = f.text_field :address, :label => 'Full Address'
-  .row
-    .col-sm-6
-      = f.text_field :dateofbirth, :label => 'Date of Birth'
-    .col-sm-6
-      = f.text_field :taxcode, :label => 'Tax code'
   
-  -# Gender inline check-box
-  = f.label "Gender"
-  = f.form_group :gender do
-    = f.radio_button :gender, 0, label: "Female", inline: true
-    = f.radio_button :gender, 1, label: "Male", inline: true
- 
+  = f.input :policy_id, :as => :hidden, :input_html => { :value => @policy_id }
+  .row
+    .col-sm-8       
+      = f.input :name, :label => 'Full Name'
+  .row
+    .col-sm-8    
+      = f.input :address, :label => 'Full Address'
+  .row
+    .col-sm-4
+      = f.input :dateofbirth, as: :string, :label => 'Date of Birth', input_html: { :class => "birthday_datepicker" } 
+    .col-sm-4
+      = f.input :taxcode, :label => 'Tax code'
   
   .row
-    .col-sm-6
-      = f.text_field :weight, :label => 'Weight in Kg'
-    .col-sm-6
-      = f.text_field :height, :label => 'Height in cm'
+    .col-sm-2   
+      = f.input :gender, as: :radio_buttons, collection: ["Male", "Female"]
+    .col-sm-3
+      = f.input :weight, :label => 'Weight in Kg'
+    .col-sm-3
+      = f.input :height, :label => 'Height in cm'
      
-      
-  = f.text_field :occupation, :label => 'Occupation (state all)'
-  %hr
-  -# Smoker inline check-box
-  = f.label "Do you smoke?"
-  = f.form_group :smoker do
-    = f.radio_button :smoker, 0, label: "Yes", inline: true
-    = f.radio_button :smoker, 1, label: "No", inline: true
- 
-  = f.label "If yes:"
-  .row  
-    .col-sm-6
-      = f.text_field :typeofsmoke, :label => 'What do you smoke?'
-    .col-sm-6
-      = f.text_field :smokequantity, :label => 'How much do you smoke?'
-  = f.label "If you stopped smoking, state the date:"  
   .row
-    .col-sm-6 
-      = f.date_field :stopdate, hide_label: :true
-    .col-sm-6  
-  %hr
-  -# Alcohol inline checkbox
-  = f.label "Do you drink alcohol?"
-  = f.form_group :alcohol do
-    = f.check_box :alcohol, label: "Yes", inline: true
-    = f.check_box :alcohol, label: "No", inline: true
-  = f.label "If yes:"
+    .col-sm-8    
+      = f.input :occupation, :label => 'Occupation (state all)'
+  
   .row
-    .col-sm-6
-      = f.text_field :typeofalcohol, :label => 'What do you drink?'
-    .col-sm-6  
-      = f.text_field :alcoholquantity, :label => 'How much do you drink?'
-  %hr
-  = f.text_field :nrflights, :label => 'Please state approximate number of flights as a passenger on scheduled flight for the next year'
-  = f.text_field :motorkm, :label => 'Please state average kilometers per year on motor vehicles'
+    .col-sm-2
+      = f.input :smoker, as: :radio_buttons, collection: ["Yes", "No"], :label => "Do you smoke"
+    %div#smoker  
+      .col-sm-3
+        = f.input :typeofsmoke, :label => 'What do you smoke?'
+      .col-sm-3
+        = f.input :smokequantity, :label => 'How much do you smoke?'
+    %div#stopsmoke
+      .col-sm-3
+        = f.input :stopdate, as: :string, :label => "If you stopped smoking, state the date:", input_html: { :class => "stopsmoke_datepicker" } 
+
+  .row
+    .col-sm-2
+      = f.input :alcohol, as: :radio_buttons, collection: ["Yes", "No"], :label => "Do you drink alcohol?"
+    %div#alcohol
+      .col-sm-3
+        = f.input :typeofalcohol, :label => 'What do you drink?'
+      .col-sm-3 
+        = f.input :alcoholquantity, :label => 'How much do you drink?'
+  .row
+    .col-sm-8
+      = f.input :nrflights, :label => 'Please state approximate number of flights as a passenger on scheduled flight for the next year'
+  .row
+    .col-sm-8
+      = f.input :motorkm, :label => 'Please state average kilometers per year on motor vehicles'
 
   
   
-  .pull-right
-    = f.form_group do
-      = f.submit "Continue", :class => 'btn btn-primary btn-sm'
+  .form-group-1
+    = f.submit "Continue", :class => 'btn btn-primary btn-sm'

@@ -1,18 +1,24 @@
 class AccidentStepsController < ApplicationController
   include Wicked::Wizard
-  steps :personal
+  steps :evalquest, :confirmation
   
   def show
     @accident = Accident.find(session[:accident_id])
     render_wizard 
   end
   
+  def edit
+    render_wizard
+  end
+  
   def update
     @accident = Accident.find_by_id(session[:accident_id])
     @accident.update_attributes(accident_params)
-    if params[:back_button]
+    if params[:editaccident_button]
       redirect_to edit_accident_path(@accident)
-    else
+    elsif params[:back_button]
+      redirect_to previous_wizard_path
+    else 
       render_wizard @accident
     end
   end
@@ -24,11 +30,10 @@ private
   
 private
   def accident_params
-    #params.require(:policy).permit(:policytype, :policyholder_id, policyholder_attributes: [:id, :name, :_destroy])
-    params.require(:accident).permit(:name, :address, :dateofbirth, :gender, :policy_id)
+    #params.require(:accident).permit(:name, :address, :dateofbirth, :gender, :policy_id, :flightnonpassenger)
+    params.require(:accident).permit(:flightnonpassenger, :flightnonscheduled, :travelabroad, :wintersport, :scubadiving, :mountainering, :potholing, :hanggliding, :horseriding, :runningrace, :scooter, :increasedrisk, :defectivehearing, :medicaltreatment, :yesdetails, :accidents, :insured, :yesinsured, :declinedcoverage, :yesdeclined)
   end
   
 
 
 end
-
