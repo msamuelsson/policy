@@ -1,19 +1,27 @@
 -# in _form.html.haml (the partial)
 
-= bootstrap_form_for(@policyholder, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f|
+= simple_form_for @policyholder do |f|
   - if @policyholder.errors.any?
     .error_messages
       %h2
         = pluralize(@policyholder.errors.count, "error")
-        prohibited this policyholder from being saved:
+        prohibited this @policyholder from being saved:
       %ul
         - @policyholder.errors.full_messages.each do |msg|
           %li= msg
+         
   %legend
     = controller.action_name.capitalize
-    Policyholder        
-  = f.text_field :name 
-  = f.text_field :address
-  = f.text_field :vatnumber, :label => "VAT Number"
-  = f.form_group do
-    = f.submit "Submit", :class => 'btn btn-primary btn-sm'
+    Policyholder       
+  .row
+    .col-sm-8       
+      = f.input :name, :label => 'Full Name'
+  .row
+    .col-sm-8    
+      = f.input :address, :label => 'Full Address'
+  .row
+    .col-sm-8
+      = f.input :vatnumber, :label => 'Fiscal Code or VAT Number'
+  .form-group-1
+    = f.submit "Submit", :class => 'btn btn-primary btn-sm'    
+

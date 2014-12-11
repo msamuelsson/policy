@@ -20,6 +20,8 @@
  *= require_tree .
  */
 
+
+/* Not used */
 .header {
     margin-bottom: 10px;
     padding-left: 50px;
@@ -27,51 +29,9 @@
     border-bottom: 1px solid Black;
 }
 
-.questionaries {
-    font-weight: bold;
-    font-size: 15px;
-    color: #009ac4;
-}
 
-.nav {
-	/*border-bottom: 1px solid black;*/
-	margin-bottom: 60px;
-}
 
-.nav a {
-  color: #5a5a5a;
-  font-size: 11px;
-  font-weight: bold;
-  padding: 14px 10px;
-  text-transform: uppercase;
-}
 
-.nav li {
-  display: inline;
-}
 
-.content {
-	margin-top: 30px;
-}
 
-.row {
-	margin-bottom: 15px;
-}
-
-#button {
-	margin-left: 70px;
-	margin-top: 30px;
-}
-
-#policyholderlist {
-	list-style: none;
-}
-
-.policytype-table td.hilite {
-    background-color: #DAECFF; 
-}
-
-.policytype-table tr:hover td {
-    background-color: #b2e0ef;
-}
 

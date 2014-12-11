@@ -26,12 +26,23 @@
 
 $(document).ready( function () {
 	$('#table_id').DataTable({bPaginate: false, bInfo: false});
-
+	
+	$('#table_summary').DataTable({
+		bPaginate: false, 
+		bInfo: false, 
+		bFilter: false, 
+		bSort: false,
+		columnDefs: [
+    		{ "width": "60%", "targets": 0 }
+  		]
+	});
+		
 	$('.stopsmoke_datepicker').datepicker({
     	format: "yyyy-mm-dd",
     	startView: 2,
 		minViewMode: 1,
-    	autoclose: "true"
+    	autoclose: "true",
+    	clearBtn: "true"
    
     });
     
@@ -41,6 +52,12 @@ $(document).ready( function () {
     	minViewMode: 0,
     	autoclose: "true"
    
+    });
+    
+    $('.confirmation_datepicker').datepicker({
+    	autoclose: "true",
+    	format: "dd-mm-yyyy",
+    	todayHighlight: "true"
     });
     
 

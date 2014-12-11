@@ -1,35 +1,18 @@
 -#  This file is app/views/policies/index.html.haml
-.header
+-#.header
   =render :partial => 'header_form'
-         
-.nav
-  .container
-    %ul.pull-left
-      %li.active
-        -#= link_to 'Home', policies_path
-      %li
-        -#= link_to 'New Policy', new_policy_path 
-      %li
-        = link_to 'My Policyholders', policyholders_path    
-    %ul.pull-right
-      %li
-        %a{:href => "#"} Profile
-      %li
-        %a{:href => "#"} Log Out
-      %li
-        %a{:href => "#"} Help
-  
-.container-fluid 
-  %h4 My Policies
+    
+                             
+.container#index-box
+  %h4.title My Policies
   .policy-table 
-    -#%table.table.table-striped.table-condensed.table-bordered
     %table#table_id.display
       %thead
         %tr
           %th Id
           %th Policy
           %th Policyholder Id
-          %th Created At
+          -#%th Created At
           %th Action
                     
       %tbody
@@ -39,16 +22,16 @@
             %td= policy.id
             %td= policy.policytype
             %td= policyholder.name
-            %td= policy.created_at
+            -#%td= policy.created_at
             %td
               = link_to "Show Policy", policy_path(policy), class: "btn btn-primary btn-xs"
               -#= link_to "Edit Policy", edit_accident_path(policy), class: "btn btn-primary btn-xs"
               = link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-danger btn-xs"
 
-
-.container-fluid
+%br
+.container#index-box
   .create-policy 
-    %h4 Create a new policy
+    %h5.title Create a new policy
     .row
       = form_for @new_policy, :url => { :action => "create_policy" }  do |f|
         .col-md-4

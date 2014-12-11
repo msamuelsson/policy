@@ -27,13 +27,18 @@ class AccidentsController < ApplicationController
   
   def edit
     @accident = Accident.find(params[:id])
+    @policy_id = @accident.policy_id
   end
   
   def update
     @accident = Accident.find(params[:id])
     if @accident.update_attributes(accident_params)
       session[:accident_id] = @accident.id
-      redirect_to accident_steps_path
+      if params[:confirmation_button] 
+        redirect_to accident_step_path(:id => "confirmation")
+      else
+        redirect_to accident_steps_path
+      end
     else
       render :edit
     end

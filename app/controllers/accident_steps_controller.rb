@@ -17,7 +17,7 @@ class AccidentStepsController < ApplicationController
     if params[:editaccident_button]
       redirect_to edit_accident_path(@accident)
     elsif params[:back_button]
-      redirect_to previous_wizard_path
+      redirect_to previous_wizard_path 
     else 
       render_wizard @accident
     end
@@ -31,7 +31,7 @@ private
 private
   def accident_params
     #params.require(:accident).permit(:name, :address, :dateofbirth, :gender, :policy_id, :flightnonpassenger)
-    params.require(:accident).permit(:flightnonpassenger, :flightnonscheduled, :travelabroad, :wintersport, :scubadiving, :mountainering, :potholing, :hanggliding, :horseriding, :runningrace, :scooter, :increasedrisk, :defectivehearing, :medicaltreatment, :yesdetails, :accidents, :insured, :yesinsured, :declinedcoverage, :yesdeclined)
+    params.require(:accident).permit(:flightnonpassenger, :flightnonscheduled, :travelabroad, :wintersport, :scubadiving, :mountainering, :potholing, :hanggliding, :horseriding, :runningrace, :scooter, :increasedrisk, :defectivehearing, :medicaltreatment, :yesdetails, :accidents, :insured, :yesinsured, :declinedcoverage, :yesdeclined, :confmaxsum, :benefic, :signass, :dateass, :signph, :dateph, :addinfo)
   end
   
 

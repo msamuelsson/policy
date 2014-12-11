@@ -1,7 +1,7 @@
 -# app/views/accident_steps/evalquest.html.haml
 
 .container
-  %h3 Accident and Illness
+  %h3.form-title Accident and Illness
 .container.forminfo
   %h4.bg-info The following questions will allow us to fully evaluate the extent of your coverage. Please note that terms and cost may vary following the inclusion or not of the activities indicated below. Please also note that some activities are always excluded from coverage. For more information please refer to the policy wording or ask directly your broker.
 
@@ -130,7 +130,7 @@
     .evalquest2
       -#= f.submit "Previous", :name => "back_button", :class => 'btn btn-primary btn-sm'
       = f.submit "Previous", :name => "editaccident_button", :class => 'btn btn-primary btn-sm'
-      = f.submit "Continue", :class => 'btn btn-primary btn-sm'
+      = f.submit "Next", :class => 'btn btn-primary btn-sm'
     
  
 %p

@@ -1,13 +1,13 @@
 -# app/views/accident_steps/confirmation.html.haml
 
 .container
-  %h3 Accident and Illness
+  %h3.form-title Accident and Illness
   
 .container
-  = simple_form_for(@accident, url: wizard_path) do |f|
+  = simple_form_for(@accident, url: wizard_path, :method => :put) do |f|
   
-    = f.input :name, :label => 'Could you confirm that the maximum Sum Insured for the benefit “Accidental Death” or “Permanent Disablement by Accident” is not higher than 10 times your annual gross income from your principal occupation?'
-    = f.input :name, :label => 'If you have requested the benefit “Accidental Death” could you please state the beneficiaries to be inserted in policy?'
+    = f.input :confmaxsum, :label => 'Could you confirm that the maximum Sum Insured for the benefit “Accidental Death” or “Permanent Disablement by Accident” is not higher than 10 times your annual gross income from your principal occupation?'
+    = f.input :benefic, :label => 'If you have requested the benefit “Accidental Death” could you please state the beneficiaries to be inserted in policy?'
     
     .row
       .col-sm-2
@@ -16,17 +16,20 @@
     
     .row
       .col-sm-6
-        = f.input :name, :label => 'Signature of the Assured'
+        = f.input :signass, :label => 'Signature of the Assured'
       .col-sm-6  
-        = f.input :name, :label =>'Date'
+        = f.input :dateass, as: :string, :label =>'Date', input_html: { :class => "confirmation_datepicker" } 
         
     .row
       .col-sm-6
-        = f.input :name, :label => 'Signature of the Policy Holder (if required)'
+        = f.input :signph, :label => 'Signature of the Policy Holder (if required)'
       .col-sm-6  
-        = f.input :name, :label =>'Date'  
-    = f.input :name, :label => 'Additional Information' 
+        = f.input :dateph, as: :string, :label =>'Date', input_html: { :class => "confirmation_datepicker" } 
+         
+    = f.input :addinfo, :label => 'Additional Information' 
+    
     .evalquest2
+      = f.submit "First", :name => "editaccident_button", :class => 'btn btn-primary btn-sm'
       = f.submit "Previous", :name => "back_button", :class => 'btn btn-primary btn-sm'
       = f.submit "Confirm", :class => 'btn btn-primary btn-sm' 
       

@@ -1,8 +1,8 @@
 -#  This file is app/views/policyholders/index.html.haml
-.header
+-#.header
   =render :partial => 'header_form'
   
-.nav
+-#.nav
   .container
     %ul.pull-left
       %li.active
@@ -18,40 +18,37 @@
         %a{:href => "#"} Log Out
       %li
         %a{:href => "#"} Help
+        
 
     
-.container-fluid 
-  %h4 My Policyholders  
-  .jumbotron 
-    .policyholder-table
-      %table#table_id.display
-        %thead
+.container#index-box
+  %h4.title My Policyholders     
+  .policyholder-table
+    %table#table_id.display
+      %thead
+        %tr
+          %th Id
+          %th Name
+          -#%th Created At
+          -#%th Updated At
+          %th Action
+            
+            
+      %tbody
+        - @policyholders.each do |policyholder|
           %tr
-            %th Id
-            %th Name
-            -#%th Created At
-            -#%th Updated At
-            %th Action
-            
-            
-        %tbody
-          - @policyholders.each do |policyholder|
-            %tr
-              %td= policyholder.id
-              %td= policyholder.name
-              -#%td= policyholder.created_at
-              -#%td= policyholder.updated_at
-              %td
-                = link_to "Show", policyholder_path(policyholder), class: 'btn btn-primary btn-xs'
-                = link_to "Edit", edit_policyholder_path(policyholder), class: 'btn btn-primary btn-xs'
-                = link_to "Destroy", policyholder, :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-danger btn-xs'
+            %td= policyholder.id
+            %td= policyholder.name
+            -#%td= policyholder.created_at
+            -#%td= policyholder.updated_at
+            %td
+              = link_to "Show", policyholder_path(policyholder), class: 'btn btn-primary btn-xs'
+              = link_to "Edit", edit_policyholder_path(policyholder), class: 'btn btn-primary btn-xs'
+              = link_to "Destroy", policyholder, :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-danger btn-xs'
             
  
-.container-fluid
+.container
   %p= button_to 'New Policyholder', new_policyholder_path, :method => :get, class: 'btn btn-primary'          
-            
-    
- 
 
 
 

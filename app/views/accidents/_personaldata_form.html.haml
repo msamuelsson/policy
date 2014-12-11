@@ -10,7 +10,7 @@
         - @accident.errors.full_messages.each do |msg|
           %li= msg
   
-  = f.input :policy_id, :as => :hidden, :input_html => { :value => @policy_id }
+  = f.input :policy_id, as: :hidden, :input_html => { :value => @policy_id }
   .row
     .col-sm-8       
       = f.input :name, :label => 'Full Name'
@@ -65,4 +65,7 @@
   
   
   .form-group-1
-    = f.submit "Continue", :class => 'btn btn-primary btn-sm'
+    = f.submit "Next", :class => 'btn btn-primary btn-sm'
+    -if controller.action_name == "edit"
+      = f.submit "Last", :name => "confirmation_button", :class => 'btn btn-primary btn-sm'
+    

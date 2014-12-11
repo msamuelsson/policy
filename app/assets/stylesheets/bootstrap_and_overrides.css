@@ -5,6 +5,44 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
+.container-fluid#navbar {
+	/*height: 80px;*/
+}
+ 
+ 
+body {
+	font-family: PT-Sans, sans-serif;
+}
+
+/* Title of the tables*/
+.title {
+ 	color: #444;
+ 	font-size: 16px;
+ 	font-weight: bold;
+ 	font-family: "PT Sans",sans-serif;
+ 	padding-bottom: 10px;
+ 	border-bottom: 1px solid #EEE;
+ 	text-transform: uppercase;
+ 	
+}
+
+/* Box around the tables*/
+#index-box {
+	border-bottom: 1px solid #EEE;
+	border-top: 1px solid #EEE;
+	border-left: 1px solid #EEE;
+	border-right: 1px solid #EEE;
+}
+
+/* Tiltle of the forms*/
+.form-title {
+	color: #444;
+ 	font-size: 24px;
+ 	font-weight: bold;
+ 	padding-bottom: 10px;
+ 	border-bottom: 1px solid #EEE;
+	
+}
  
 .navbar-inner {
 	min-height: 40px;
@@ -65,7 +103,7 @@
 }
 
 .forminfo {
-	margin-bottom: 30px;	
+	margin-bottom: 30px;
 }
 	
 

@@ -1,25 +1,7 @@
 -#  This file is app/views/policyholders/new.html.haml
-.header
-  =render :partial => 'header_form'
-  
-.nav
-  .container
-    %ul.pull-left
-      %li.active
-        = link_to 'Home', policies_path
-      %li
-        -#= link_to 'New Policy', new_policy_path 
-      %li
-        = link_to 'Policyholders', policyholders_path    
-    %ul.pull-right
-      %li
-        %a{:href => "#"} Profile
-      %li
-        %a{:href => "#"} Log Out
-      %li
-        %a{:href => "#"} Help  
+-#=render :partial => 'shared/navbar_header' 
         
-.container-fluid
+.container
   =render :partial => 'form'
      
 %p

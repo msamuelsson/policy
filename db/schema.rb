@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203153917) do
+ActiveRecord::Schema.define(version: 20141211102449) do
 
   create_table "accidents", force: true do |t|
     t.string   "name"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20141203153917) do
     t.string   "scubadiving"
     t.string   "mountainering"
     t.string   "potholing"
-    t.date     "hanggliding"
+    t.string   "hanggliding"
     t.string   "horseriding"
     t.string   "runningrace"
     t.string   "scooter"
@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(version: 20141203153917) do
     t.text     "yesinsured"
     t.string   "declinedcoverage"
     t.text     "yesdeclined"
+    t.string   "confmaxsum"
+    t.string   "benefic"
+    t.string   "signass"
+    t.date     "dateass"
+    t.string   "signph"
+    t.date     "dateph"
+    t.text     "addinfo"
+    t.date     "insurancestart"
+    t.date     "insuranceend"
+    t.string   "phrelation"
   end
 
   create_table "fvplants", force: true do |t|
