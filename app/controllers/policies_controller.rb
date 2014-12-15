@@ -10,7 +10,7 @@ class PoliciesController < ApplicationController
     @policy = Policy.new(policy_params)
     if @policy.save
       case @policy.policytype
-      when 'accident'
+      when 'Accident and Illness'
         redirect_to new_policy_accident_path(@policy)
         #session[:policy_id] = @policy.id
         #redirect_to accident_steps_path
@@ -30,7 +30,7 @@ class PoliciesController < ApplicationController
     policyholder_id = @policy.policyholder_id
     @policyholder = Policyholder.find_by_id(policyholder_id)
     case @policy.policytype
-      when 'accident'
+      when 'Accident and Illness'
         redirect_to accidents_path(:accident_filter => @policy.id)
       when 'fvplants'
         #@fvplant = Fvplant.where(:policy_id => @policy_id)

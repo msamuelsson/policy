@@ -3,35 +3,31 @@
   =render :partial => 'header_form'
            
   
-.container-fluid 
-  %h4 Policy: Accidents, Policyholder: #{@policyholder.name}
+.container#index-box
+  %h4.title Accidents and Ilness
   .accident-table 
     %table#table_id.display
       %thead
         %tr
           %th Id
-          %th Name
-          %th Address
-          %th Date of Birth
-          %th Gender
+          %th Policyholder
+          %th Insured
+          %th Expiring Date
           %th Action
-          -#%th Updated At
       
       %tbody
         - @all_accidents.each do |accident|
           -#- policyholder = Policyholder.where(:id => policy.policyholder_id).first
           %tr
             %td= accident.id
+            %td= @policyholder.name
             %td= accident.name
-            %td= accident.address
-            %td= accident.dateofbirth
-            %td= accident.gender
-            %td= link_to "Edit Policy", edit_accident_path(accident)
-            -#%td= policy.updated_at
-            %td= link_to "Show Policy", accident_path(accident)
-            -#%td= link_to "Edit Policy", edit_policy_path(policy)
+            %td= accident.insuranceend
+            %td
+              = link_to "Edit Policy", edit_accident_path(accident), class: "btn btn-primary btn-xs"
+              = link_to "Show Policy", accident_path(accident), class: "btn btn-primary btn-xs"
             -#%td= link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete
          
   
  
-%p= link_to "Back to policies", policies_path
+

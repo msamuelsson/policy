@@ -17,6 +17,7 @@
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require rails_bootstrap_forms
  *= require datepicker3 
+ *= require jquery.datepick.css 
  *= require_tree .
  */
 

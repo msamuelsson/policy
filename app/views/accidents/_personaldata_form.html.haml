@@ -17,12 +17,24 @@
   .row
     .col-sm-8    
       = f.input :address, :label => 'Full Address'
+      
   .row
     .col-sm-4
-      = f.input :dateofbirth, as: :string, :label => 'Date of Birth', input_html: { :class => "birthday_datepicker" } 
+      = f.label 'Insurance Period'
+      .input-group
+        %span.input-group-addon from
+        = f.input :insurancestart, as: :string, :label => false, input_html: { :id => "startPicker"}
+        %span.input-group-addon to 
+        = f.input :insuranceend, as: :string, :label => false, input_html: { :id => "endPicker"}
+    .col-sm-4
+      = f.input :phrelation, :label => 'Relation to the Policyholder'    
+       
+  .row
+    .col-sm-4
+      = f.input :dateofbirth, as: :string, :label => 'Date of Birth', input_html: { :class => "dp1"} 
     .col-sm-4
       = f.input :taxcode, :label => 'Tax code'
-  
+   
   .row
     .col-sm-2   
       = f.input :gender, as: :radio_buttons, collection: ["Male", "Female"]
@@ -45,7 +57,7 @@
         = f.input :smokequantity, :label => 'How much do you smoke?'
     %div#stopsmoke
       .col-sm-3
-        = f.input :stopdate, as: :string, :label => "If you stopped smoking, state the date:", input_html: { :class => "stopsmoke_datepicker" } 
+        = f.input :stopdate, as: :string, :label => "If you stopped smoking, state the date:", input_html: { :class => "dp2" } 
 
   .row
     .col-sm-2
@@ -65,7 +77,8 @@
   
   
   .form-group-1
-    = f.submit "Next", :class => 'btn btn-primary btn-sm'
+    = f.submit "Previous", :name => "editpolicy_button", :class => 'btn btn-primary btn-sm'
+    = f.submit "Next", :name => "evalquest_button", :class => 'btn btn-primary btn-sm'
     -if controller.action_name == "edit"
       = f.submit "Last", :name => "confirmation_button", :class => 'btn btn-primary btn-sm'
     

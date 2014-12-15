@@ -17,6 +17,8 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require jquery-ui
 //= require bootstrap-datepicker
+//= require jquery.plugin
+//= require jquery.datepick
 //= require turbolinks
 //= require twitter/bootstrap
 
@@ -33,25 +35,39 @@ $(document).ready( function () {
 		bFilter: false, 
 		bSort: false,
 		columnDefs: [
-    		{ "width": "60%", "targets": 0 }
+    		{ "width": "50%", "targets": 0 }
   		]
 	});
-		
-	$('.stopsmoke_datepicker').datepicker({
-    	format: "yyyy-mm-dd",
-    	startView: 2,
-		minViewMode: 1,
-    	autoclose: "true",
-    	clearBtn: "true"
-   
+	
+	
+	
+    
+    $('#startPicker,#endPicker').datepick({ 
+    onSelect: customRange, dateFormat: 'yyyy-mm-dd', showTrigger: '#calImg'}); 
+     
+	function customRange(dates) { 
+    	if (this.id == 'startPicker') { 
+        	$('#endPicker').datepick('option', 'minDate', dates[0] || null); 
+    	} 
+    	else { 
+        	$('#startPicker').datepick('option', 'maxDate', dates[0] || null); 
+   		 } 
+	}
+
+    
+    
+    $('.dp1').datepick({
+    	dateFormat: 'yyyy-mm-dd',
+    	yearRange: 'c-120:c+0',
+    	showTrigger: '#calImg'
+    
     });
     
-    $('.birthday_datepicker').datepicker({
-    	format: "yyyy-mm-dd",
-    	startView: 2,
-    	minViewMode: 0,
-    	autoclose: "true"
-   
+    $('.dp2').datepick({
+    	dateFormat: 'yyyy-mm-dd',
+    	yearRange: 'c-61:c+0',
+    	showTrigger: '#calImg'
+    
     });
     
     $('.confirmation_datepicker').datepicker({

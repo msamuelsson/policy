@@ -19,7 +19,11 @@ class AccidentsController < ApplicationController
     @accident = Accident.new(accident_params)
     if @accident.save
       session[:accident_id] = @accident.id
-      redirect_to accident_steps_path
+      if params[:evalquest_button] 
+        redirect_to accident_steps_path
+      elsif params[:editpolicy_button]
+        redirect_to edit_policy_path(@accident.policy_id)
+      end    
     else
       render :new
     end
@@ -36,6 +40,8 @@ class AccidentsController < ApplicationController
       session[:accident_id] = @accident.id
       if params[:confirmation_button] 
         redirect_to accident_step_path(:id => "confirmation")
+      elsif params[:editpolicy_button]
+        redirect_to edit_policy_path(@accident.policy_id)   
       else
         redirect_to accident_steps_path
       end
@@ -53,7 +59,7 @@ class AccidentsController < ApplicationController
   private
   def accident_params
     #params.require(:policy).permit(:policytype, :policyholder_id, policyholder_attributes: [:id, :name, :_destroy])
-    params.require(:accident).permit(:policy_id, :name, :address, :dateofbirth, :taxcode, :gender, :weight, :height, :occupation, :smoker, :typeofsmoke, :smokequantity, :stopdate, :alcohol, :typeofalcohol, :alcoholquantity, :nrflights, :motorkm)
+    params.require(:accident).permit(:policy_id, :name, :address, :insurancestart, :insuranceend, :phrelation, :dateofbirth, :taxcode, :gender, :weight, :height, :occupation, :smoker, :typeofsmoke, :smokequantity, :stopdate, :alcohol, :typeofalcohol, :alcoholquantity, :nrflights, :motorkm)
   end
 end
 

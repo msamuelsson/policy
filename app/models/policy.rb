@@ -1,6 +1,7 @@
 class Policy < ActiveRecord::Base
   
-  def self.all_policytypes ; %w[accident fvplants] ; end #  shortcut: array of strings
+  #def self.all_policytypes ; %w[accident fvplants] ; end #  shortcut: array of strings
+  def self.all_policytypes ; %W[Accident\ and\ Illness fvplants] ; end #  shortcut: array of strings
   
   has_many :accidents, :dependent => :destroy
   has_many :fvplants, :dependent => :destroy

@@ -1,10 +1,8 @@
 -# in app/views/accidents/show.html.haml
-
--#.header
-  =render :partial => 'header_form'
-  
-.container-fluid  
-  %h4 Policy: Accident
+.container
+  %h3.form-title Accident and Illness
+.container.forminfo
+  %h4.bg-info Please check that all data is correctly inserted.  
     
   %table#table_summary.display.cell-border
     %thead
@@ -19,6 +17,16 @@
       %tr
         %td='Address:' 
         %td= @accident.address 
+      %tr
+        %td='Relation to the Policyholder:' 
+        %td= @accident.phrelation 
+      %tr
+        %td='Insurance Period:' 
+        %td
+          = 'From '
+          = @accident.insurancestart
+          = 'to '
+          = @accident.insuranceend       
       %tr      
         %td='Date of Birth:' 
         %td= @accident.dateofbirth
@@ -157,8 +165,7 @@
                                                
 
 
-%p
-  = link_to 'Back to Policies', policies_path
-  = link_to "Edit", edit_accident_path(@accident)
-  = link_to "Destroy", accident_path, :confirm => 'Are you sure?', :method => :delete
+  %p
+    = link_to "Edit", edit_accident_path(@accident), class: 'btn btn-primary btn-sm'
+    = link_to "Destroy", accident_path, :confirm => 'Are you sure?', :method => :delete,class: 'btn btn-danger btn-sm'
   
