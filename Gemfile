@@ -74,3 +74,8 @@ gem 'wicked'
 
 # Rails form gem
 gem 'simple_form'
+
+# Devise for authentication solution for Rails
+gem 'devise'
+
+gem 'mail_form'
