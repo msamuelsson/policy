@@ -1,0 +1,89 @@
+-#  This file is app/views/policies/index.html.haml
+-#.header
+  =render :partial => 'header_form'
+  
+-# New list approach  
+.content 
+  .container-fluid#dashboard-main
+    .row
+      .col-md-4
+        .policyholders-content#index-box
+          %h4.title My Policyholders
+          %ul#policy-list
+            - @all_policyholders.each do |policyholder|
+              %li#policy-item
+                -#%p= policyholder.id
+                %p= policyholder.name
+                %p= policyholder.address
+                %p= policyholder.vatnumber
+                .row  
+                  %ul.list-inline#policy-action
+                    %li= link_to "Edit", edit_policyholder_path(policyholder)
+                    %li= link_to "Destroy", policyholder, :confirm => 'Are you sure?', :method => :delete
+ 
+          %p= button_to 'New Policyholder', new_policyholder_path, :method => :get, class: 'btn btn-primary'          
+
+        .contact-form#index-box
+          %h4.title Contact Us 
+          -#%p= button_to 'Contact Form', new_contact_path, :method => :get, class: 'btn btn-primary'  
+          = simple_form_for Contact.new, :url => contacts_path do |f|
+            = f.input :name, :required => true
+            = f.input :email, :required => true
+            = f.input :message, :as => :text, :required => true
+            .hidden
+              = f.input :nickname, :hint => 'Leave this field blank!'
+            %div
+              = f.button :submit, 'Send message', :class=> "btn btn-primary"     
+         
+          %address
+            <strong>BrokerStudio</strong><br>
+            V. San Pier Tommaso, 18/3<br> 
+            40139 Bologna (BO) – Italy<br>
+            <abbr title="Phone">P:</abbr> +39.051.5871644<br> 
+            <abbr title="Fax">Fax:</abbr> +39.051.5872504<br> 
+            info@brokerstudio.it Skype: brokerstudio.snc 
+                
+      .col-md-8
+        .policies-content#index-box
+          %h4.title My Policies
+          %ul#policy-list
+            - @all_policies.each do |policy|
+              - policyholder = Policyholder.where(:id => policy.policyholder_id).first
+              %li#policy-item
+                .row
+                  .col-md-5
+                    %h4= policy.policytype
+                .row
+                  .col-md-2
+                    %p Policyholder:
+                  .col-md-6     
+                    %p= policyholder.name
+                .row 
+                  .col-md-2
+                    %p Expiring date:
+                  .col-md-6     
+                .row  
+                  %ul.list-inline.pull-right#policy-action
+                    %li= link_to "Show Policy", policy_path(policy)
+                    %li= link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete   
+
+        .create-policy#index-box
+          %h4.title Create a new policy
+          .row
+            = simple_form_for @new_policy, :url => { :action => "create_policy" } do |f|
+              .col-md-4
+                = f.input :policytype, :label => 'Select Policytype:' do
+                  = f.select :policytype, Policy.all_policytypes
+              .col-md-3 
+                = f.input :policyholder_id, :label => 'Select Policyholder:' do
+                  = f.select :policyholder_id, @all_policyholders.map {|p| [p.name,p.id]}
+              .col-md-2 
+                = f.input :user_id, as: :hidden, :input_html => { :value => current_user.id }   
+              .col-md-3  
+                = f.submit "Create Policy", class: "btn btn-primary"
+
+.footer
+  .container-fluid
+    %p#footer-text © 2012 Brokerstudio Srl · Via San Pier Tommaso, 18/3 – 40139 Bologna – P.I. 02110861206 - RUIB000126973
+           
+        

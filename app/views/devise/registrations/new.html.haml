@@ -1,0 +1,26 @@
+-#  This file is app/views/devise/registration/new.html.haml
+
+.container#introduction
+  #header
+    .title-super Please register
+    .title-sub to create your account and policies
+%br
+%br 
+.container
+  -#%h2.title Sign up
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = f.error_notification
+    .form-inputs
+      .row
+        .col-sm-5
+          = f.input :email, required: true, autofocus: true
+      .row
+        .col-sm-5    
+          = f.input :password, required: true
+      .row
+        .col-sm-5    
+          = f.input :password_confirmation, required: true
+    .form-actions
+      = f.button :submit, "Sign up", class: "btn btn-primary btn-sm"
+    = render "devise/shared/links"
+   

@@ -1,9 +1,12 @@
 class PoliciesController < ApplicationController
   
+  
   def index
-   @all_policies = Policy.all
-   @all_policyholders = Policyholder.all
+   #@all_policies = Policy.all
+   @all_policies = Policy.where(:user_id => current_user.id)
+   @all_policyholders = Policyholder.where(:user_id => current_user.id)
    @new_policy = Policy.new 
+   render :dashbord
   end
   
   def create_policy
@@ -79,7 +82,7 @@ class PoliciesController < ApplicationController
   
   private
   def policy_params
-    params.require(:policy).permit(:policytype, :policyholder_id)
+    params.require(:policy).permit(:policytype, :policyholder_id, :user_id)
   end
 end
 

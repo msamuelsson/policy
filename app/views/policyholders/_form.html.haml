@@ -10,8 +10,9 @@
         - @policyholder.errors.full_messages.each do |msg|
           %li= msg
          
-  %legend
-    = controller.action_name.capitalize
+  -#%legend
+  %h4.title  
+    = controller.action_name.capitalize 
     Policyholder       
   .row
     .col-sm-8       
@@ -22,6 +23,9 @@
   .row
     .col-sm-8
       = f.input :vatnumber, :label => 'Fiscal Code or VAT Number'
+  .row
+    .col-sm-8    
+      = f.input :user_id, as: :hidden, :input_html => { :value => current_user.id } 
   .form-group-1
     = f.submit "Submit", :class => 'btn btn-primary btn-sm'    
 

@@ -5,28 +5,29 @@
                              
 .container#index-box
   %h4.title My Policies
-  .policy-table 
-    %table#table_id.display
-      %thead
-        %tr
-          %th Id
-          %th Policy
-          %th Policyholder Id
-          -#%th Created At
-          %th Action
-                    
-      %tbody
-        - @all_policies.each do |policy|
-          - policyholder = Policyholder.where(:id => policy.policyholder_id).first
+  - if @all_policies.empty?
+    .alert.alert-info You have no active policies
+  - else  
+    .policy-table 
+      %table#table_id.display
+        %thead
           %tr
-            %td= policy.id
-            %td= policy.policytype
-            %td= policyholder.name
-            -#%td= policy.created_at
-            %td
-              = link_to "Show Policy", policy_path(policy), class: "btn btn-primary btn-xs"
-              -#= link_to "Edit Policy", edit_accident_path(policy), class: "btn btn-primary btn-xs"
-              = link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-danger btn-xs"
+            %th Id
+            %th Policy
+            %th Policyholder Id
+            %th Action
+                    
+        %tbody
+          - @all_policies.each do |policy|
+            - policyholder = Policyholder.where(:id => policy.policyholder_id).first
+            %tr
+              %td= policy.id
+              %td= policy.policytype
+              %td= policyholder.name
+              %td
+                = link_to "Show Policy", policy_path(policy), class: "btn btn-primary btn-xs"
+                -#= link_to "Edit Policy", edit_accident_path(policy), class: "btn btn-primary btn-xs"
+                = link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete, class: "btn btn-danger btn-xs"
 
 %br
 %br         
@@ -38,8 +39,10 @@
         .col-md-4
           = f.input :policytype, :label => 'Select Policytype:' do
             = f.select :policytype, Policy.all_policytypes
-        .col-md-4  
+        .col-md-3 
           = f.input :policyholder_id, :label => 'Select Policyholder:' do
             = f.select :policyholder_id, @all_policyholders.map {|p| [p.name,p.id]}
+        .col-md-2 
+          = f.input :user_id, as: :hidden, :input_html => { :value => current_user.id }   
         .col-md-3  
           = f.submit "Create Policy", class: "btn btn-primary"

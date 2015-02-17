@@ -1,7 +1,7 @@
 -# in app/views/policies/edit.html.haml
 
 %h4 Edit Policy
--#= render "form"
+
 = simple_form_for (@policy) do |f|
   = f.input :policyholder_id, :label => 'Select Policyholder:' do
     = f.select :policyholder_id, @all_policyholders.map {|p| [p.name,p.id]}

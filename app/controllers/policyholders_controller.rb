@@ -1,7 +1,8 @@
 class PolicyholdersController < ApplicationController
   
   def index
-   @policyholders = Policyholder.all
+   #@policyholders = Policyholder.all
+   @policyholders = Policyholder.where(:user_id => current_user.id)
   end
   
   def show
@@ -17,7 +18,8 @@ class PolicyholdersController < ApplicationController
     if @policyholder.save
       flash[:notice] = "Successfully created policyholder."
       #redirect_to @policyholder
-      redirect_to policyholders_path
+      #redirect_to policyholders_path         
+      redirect_to policies_path 
     else
       render :new
     end
@@ -45,6 +47,6 @@ class PolicyholdersController < ApplicationController
   private
   def policyholder_params
     #params.require(:policyholder).permit(:name, policies_attributes: [:id, :policytype, :policyholder_id, :_destroy])
-    params.require(:policyholder).permit(:name, :address, :vatnumber)
+    params.require(:policyholder).permit(:name, :address, :vatnumber, :user_id)
   end
 end

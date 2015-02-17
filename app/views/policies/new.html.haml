@@ -8,6 +8,8 @@
     = f.select :policytype, @all_policytypes, { label: "Select Policytype:" }, { class: "selectpicker"}
     -#= f.select :policyholder, @policyholder.name, { label: "Select Policyholder:" }, { class: "selectpicker"}
     = f.hidden_field('policyholder_id', :value => @policyholder.id) 
+    = f.hidden_field('user_id', :value => @current_user.id) 
+    = f.input :user_id, :value => @current_user.id
   
   -#= f.fields_for :policies do |builder|
     -#%p

@@ -1,0 +1,50 @@
+-# in _navbar_header.html.haml (the partial)
+
+%nav.navbar.navbar-default{:role => "navigation"}
+  .container-fluid#navbar
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      -#%button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+      %button.navbar-toggle.collapsed{"data-target" => "navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.brand{:href => "/"}
+        %img{:src => "https://www.brokerstudio.it/wp-sito/wp-content/themes/shotzz/sprites/i/logo-broker.png"}/
+      -#%p.navbar-text Signed in as Maria Samuelsson
+      
+    -##bs-example-navbar-collapse-1.collapse.navbar-collapse
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          %a{:href => policies_path}
+            My policies
+            %span.sr-only (current)
+        %li
+          %a{:href => policyholders_path}
+            My Policyholders
+        %li
+          %a{:href => new_user_registration_path}
+            Sign up
+        %li
+          %a{:href => destroy_user_session_path, :method => :delete}
+            Sign out         
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Dropdown
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              %a{:href => policies_path} Policies
+            %li
+              %a{:href => policyholders_path} Policyholders
+            %li
+              %a{:href => "#"} Something else here
+            %li.divider
+            %li
+              %a{:href => "#"} Separated link
+            %li.divider
+            %li
+              %a{:href => "#"} One more separated link
+                      

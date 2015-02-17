@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  devise_for :users
+  
+  devise_scope :user do
+    authenticated :user do
+      root 'policies#index', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -67,8 +79,15 @@ Rails.application.routes.draw do
    resources :fvplants
    resources :accident_steps
    
+   #Mail Form
+   #resources :contacts
+   match '/contacts',     to: 'contacts#new',   via: 'get'
+   resources "contacts", only: [:new, :create]
+   
+   
    #Route that posts 'Create Policy' form
    post '/policies/create_policy'
    
-   root :to => "policies#index"
+   
+   root :to => "policies#index" 
 end
