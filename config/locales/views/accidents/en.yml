@@ -19,11 +19,11 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-# locales/en
-
 en:
   policyholders:
     title: "Policyholders"
+    link_to_edit: "Edit"
+    link_to_destroy: "Delete"
     button_to_newph: "New Policyholder"    
   
   policies:
@@ -33,11 +33,14 @@ en:
   questionary:
     title: "Current Questionaries" 
     policyholder: "Policyholder:"
-    expiring: "Expiring Date:" 
+    expiring: "Expiring Date:"
+    link_to_show: "Show Questionary"
+    link_to_destroy: "Delete"    
     
   createpolicy:
     title: "Fill in a new questionary"
     select_policy: "Select Policytype:"
     select_policyholder: "Select Policyholder:"
     insurance_period: "Insurance Period:"
-   
+    submit: "Submit"    
+

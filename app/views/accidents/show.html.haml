@@ -1,7 +1,8 @@
 -# in app/views/accidents/show.html.haml
-.container
+-#.container
   %h3.form-title Accident and Illness
-.container.forminfo
+.container#index-box
+  %h4.form-title Accident and Illness
   %h4.bg-info Please check that all data is correctly inserted.  
     
   %table#table_summary.display.cell-border
@@ -167,5 +168,6 @@
 
   %p
     = link_to "Edit", edit_accident_path(@accident), class: 'btn btn-primary btn-sm'
-    = link_to "Destroy", accident_path, :confirm => 'Are you sure?', :method => :delete,class: 'btn btn-danger btn-sm'
+    = link_to "Save", policies_path, class: 'btn btn-primary btn-sm'
+    -#= link_to "Destroy", accident_path, :confirm => 'Are you sure?', :method => :delete,class: 'btn btn-danger btn-sm'
   

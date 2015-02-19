@@ -2,8 +2,10 @@ class AccidentsController < ApplicationController
   
   def index
    @all_accidents = Accident.where(:policy_id => params[:accident_filter])
+   @accident = Accident.where(:policy_id => params[:accident_filter]).first
    @policy = Policy.find_by_id(params[:accident_filter])
    @policyholder = Policyholder.find_by_id(@policy.policyholder_id)
+ 
   end
   
   def show
@@ -13,6 +15,9 @@ class AccidentsController < ApplicationController
   def new 
     @accident = Accident.new
     @policy_id = params[:policy_id]
+    @policy = Policy.find_by_id(@policy_id)
+    @insurancestart = @policy.insurancestart
+    @insuranceend =  @policy.insuranceend
   end
   
   def create
@@ -58,7 +63,6 @@ class AccidentsController < ApplicationController
   
   private
   def accident_params
-    #params.require(:policy).permit(:policytype, :policyholder_id, policyholder_attributes: [:id, :name, :_destroy])
     params.require(:accident).permit(:policy_id, :name, :address, :insurancestart, :insuranceend, :phrelation, :dateofbirth, :taxcode, :gender, :weight, :height, :occupation, :smoker, :typeofsmoke, :smokequantity, :stopdate, :alcohol, :typeofalcohol, :alcoholquantity, :nrflights, :motorkm)
   end
 end

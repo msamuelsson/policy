@@ -6,7 +6,7 @@ class PoliciesController < ApplicationController
    @all_policies = Policy.where(:user_id => current_user.id)
    @all_policyholders = Policyholder.where(:user_id => current_user.id)
    @new_policy = Policy.new 
-   render :dashbord
+   #render :dashbord
   end
   
   def create_policy
@@ -15,13 +15,9 @@ class PoliciesController < ApplicationController
       case @policy.policytype
       when 'Accident and Illness'
         redirect_to new_policy_accident_path(@policy)
-        #session[:policy_id] = @policy.id
-        #redirect_to accident_steps_path
       when 'fvplants'
         redirect_to new_policy_fvplant_path(@policy)
       end   
-      #render :create_policy
-      #redirect_to policies_path
     else
       flash[:notice]= "Policy could not be created."
     end  
@@ -35,6 +31,7 @@ class PoliciesController < ApplicationController
     case @policy.policytype
       when 'Accident and Illness'
         redirect_to accidents_path(:accident_filter => @policy.id)
+        #redirect_to accidents_path(:policy_id => @policy.id)
       when 'fvplants'
         #@fvplant = Fvplant.where(:policy_id => @policy_id)
         #redirect_to fvplant_path(@fvplant)
@@ -68,7 +65,16 @@ class PoliciesController < ApplicationController
   def update
     @policy = Policy.find(params[:id])
     if @policy.update_attributes(policy_params)
-      redirect_to @policy, notice: "Successfully updated policy."
+      if params[:editaccident_button] 
+        if session[:accident_id]
+          @accident = Accident.find_by_id(session[:accident_id])
+          redirect_to edit_accident_path(@accident)  
+        else
+          redirect_to new_policy_accident_path(@policy)
+        end 
+      elsif params[:confirmation_button] 
+        redirect_to accident_step_path(:id => "confirmation") 
+      end  
     else
       render :edit
     end
@@ -82,7 +88,7 @@ class PoliciesController < ApplicationController
   
   private
   def policy_params
-    params.require(:policy).permit(:policytype, :policyholder_id, :user_id)
+    params.require(:policy).permit(:policytype, :policyholder_id, :insurancestart, :insuranceend, :user_id)
   end
 end
 

@@ -11,6 +11,8 @@
           %li= msg
   
   = f.input :policy_id, as: :hidden, :input_html => { :value => @policy_id }
+  = f.input :insurancestart, as: :hidden, :input_html => { :value => @insurancestart}
+  = f.input :insuranceend, as: :hidden, :input_html => { :value => @insuranceend }
   .row
     .col-sm-8       
       = f.input :name, :label => 'Full Name'
@@ -19,7 +21,7 @@
       = f.input :address, :label => 'Full Address'
       
   .row
-    .col-sm-4
+    -#.col-sm-4
       = f.label 'Insurance Period'
       .input-group
         %span.input-group-addon from
@@ -60,7 +62,7 @@
         = f.input :stopdate, as: :string, :label => "If you stopped smoking, state the date:", input_html: { :class => "dp2" } 
 
   .row
-    .col-sm-2
+    .col-sm-3
       = f.input :alcohol, as: :radio_buttons, collection: ["Yes", "No"], :label => "Do you drink alcohol?"
     %div#alcohol
       .col-sm-3

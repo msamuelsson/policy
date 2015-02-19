@@ -12,20 +12,27 @@
          
   -#%legend
   %h4.title  
-    = controller.action_name.capitalize 
-    Policyholder       
+    -#= controller.action_name.capitalize 
+    - if controller.action_name == "new"
+      = t(".action_new")
+      = t(".title") 
+    - else
+      = t(".action_edit")
+      = t(".title") 
+          
   .row
     .col-sm-8       
-      = f.input :name, :label => 'Full Name'
+      -#= f.input :name, :label => 'Full Name'
+      = f.input :name, :label => t(".name")
   .row
     .col-sm-8    
-      = f.input :address, :label => 'Full Address'
+      = f.input :address, :label => t(".address")
   .row
     .col-sm-8
-      = f.input :vatnumber, :label => 'Fiscal Code or VAT Number'
+      = f.input :vatnumber, :label => t(".fiscal_code")
   .row
     .col-sm-8    
       = f.input :user_id, as: :hidden, :input_html => { :value => current_user.id } 
   .form-group-1
-    = f.submit "Submit", :class => 'btn btn-primary btn-sm'    
+    = f.submit t("defaults.submit"), :class => 'btn btn-primary btn-sm'    
 

@@ -66,28 +66,43 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   
-   resources :policyholders do
-     resources :policies
-   end
+  
+    scope :path => "(:locale)", :shallow_path => "(:locale)", :locale => /en|it/ do
+      resources :policyholders, :shallow => true do
+        resources :policies
+      end
+    end
    
-   resources :policies do
-     resources :accidents
-     resources :fvplants
-   end
+    scope :path => "(:locale)", :shallow_path => "(:locale)", :locale => /en|it/ do
+      resources :policies, :shallow => true do
+        resources :accidents
+        resources :fvplants
+        
+        root :to => "policies#index"
+      end
+    end
    
-   resources :accidents
-   resources :fvplants
-   resources :accident_steps
+    scope :path => "(:locale)", :locale => /en|it/ do
+      resources :accidents
+      resources :fvplants
+      resources :accident_steps
+    end
    
-   #Mail Form
-   #resources :contacts
-   match '/contacts',     to: 'contacts#new',   via: 'get'
-   resources "contacts", only: [:new, :create]
-   
-   
-   #Route that posts 'Create Policy' form
-   post '/policies/create_policy'
+    #Mail Form
+    #resources :contacts
+    match '/contacts',     to: 'contacts#new',   via: 'get'
+    resources "contacts", only: [:new, :create]
    
    
-   root :to => "policies#index" 
-end
+    #Route that posts 'Create Policy' form
+    
+    post '/policies/create_policy'
+    
+    get '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
+    get '', to: redirect("/#{I18n.default_locale}/policies")
+
+    
+    #get '/:locale' => 'policies#index'
+    #root :to => "policies#index" 
+   
+  end

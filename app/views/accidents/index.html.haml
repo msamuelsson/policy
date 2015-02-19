@@ -3,31 +3,177 @@
   =render :partial => 'header_form'
            
   
-.container#index-box
-  %h4.title Accidents and Ilness
-  .accident-table 
-    %table#table_id.display
+.container
+  -#%h4.title Accidents and Ilness
+  
+  .container#index-box
+    %h4.title Accidents and Ilness
+    -#%h4.bg-info Please check that all data is correctly inserted.  
+    
+    %table#table_summary.display.cell-border
       %thead
         %tr
-          %th Id
-          %th Policyholder
-          %th Insured
-          %th Expiring Date
-          %th Action
-      
+          %td= ''
+          %td= ''  
+                
       %tbody
-        - @all_accidents.each do |accident|
-          -#- policyholder = Policyholder.where(:id => policy.policyholder_id).first
-          %tr
-            %td= accident.id
-            %td= @policyholder.name
-            %td= accident.name
-            %td= accident.insuranceend
-            %td
-              = link_to "Edit Policy", edit_accident_path(accident), class: "btn btn-primary btn-xs"
-              = link_to "Show Policy", accident_path(accident), class: "btn btn-primary btn-xs"
-            -#%td= link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete
+        %tr
+          %td='Name:' 
+          %td= @accident.name
+        %tr
+          %td='Address:' 
+          %td= @accident.address 
+        %tr
+          %td='Relation to the Policyholder:' 
+          %td= @accident.phrelation 
+        %tr
+          %td='Insurance Period:' 
+          %td
+            = 'From '
+            = @accident.insurancestart
+            = 'to '
+            = @accident.insuranceend       
+        %tr      
+          %td='Date of Birth:' 
+          %td= @accident.dateofbirth
+        %tr      
+          %td='Tax Code:' 
+          %td= @accident.taxcode
+        %tr      
+          %td='Gender:' 
+          %td= @accident.gender
+        %tr      
+          %td='Weight in Kg:' 
+          %td= @accident.weight
+        %tr      
+          %td='Height in cm:' 
+          %td= @accident.height
+        %tr      
+          %td='Occupation:'  
+          %td= @accident.occupation
+        %tr      
+          %td='Do you smoke:' 
+          %td= @accident.smoker 
+        - if @accident.smoker == "Yes"    
+          %tr      
+            %td='What do you smoke:' 
+            %td= @accident.typeofsmoke  
+          %tr      
+            %td='How much do you smoke:' 
+            %td= @accident.smokequantity 
+        - if (@accident.smoker == "No" and @accident.stopdate)
+          %tr      
+            %td='Stopped smoking at:' 
+            %td= @accident.stopdate
          
-  
+        %tr      
+          %td='Do you drink alcohol:' 
+          %td= @accident.alcohol
+        
+        - if @accident.alcohol == "Yes"   
+          %tr      
+            %td='What do you drink:' 
+            %td= @accident.typeofalcohol
+          %tr      
+            %td='How much do you drink:' 
+            %td= @accident.alcoholquantity
+        %tr      
+          %td='Number of flights as a passenger on scheduled flight for the next year:' 
+          %td= @accident.nrflights 
+        %tr     
+          %td='Average kilometers per year on motor vehicles:' 
+          %td= @accident.motorkm
+        %tr      
+          %td='Flights other than as a passenger:' 
+          %td= @accident.flightnonpassenger
+        %tr      
+          %td='Flights other than using scheduled flights:' 
+          %td= @accident.flightnonscheduled
+        %tr      
+          %td='Travel abroad for business or leisure:' 
+          %td= @accident.travelabroad
+        %tr      
+          %td='Winter sports:' 
+          %td= @accident.wintersport 
+        %tr      
+          %td='Scuba diving:' 
+          %td= @accident.scubadiving
+        %tr      
+          %td='Mountainering with use of ropes and guides:' 
+          %td= @accident.mountainering
+        %tr      
+          %td='Potholing:' 
+          %td= @accident.potholing
+        %tr      
+          %td='Hang-gliding or parachuting:' 
+          %td= @accident. hanggliding
+        %tr      
+          %td='Hunting on horseback, horse riding:' 
+          %td= @accident.horseriding 
+        %tr      
+          %td='Participation to any kind of runnig, race or competition:' 
+          %td= @accident.runningrace
+        %tr      
+          %td='Do you drive motor cycles or a scooter:' 
+          %td= @accident.scooter
+        %tr      
+          %td='Any other sports, occupation or pastime which is likely to increase the risk of an accident:' 
+          %td= @accident.increasedrisk 
+        %tr      
+          %td='Do you suffer from defective hearing or vision:' 
+          %td= @accident.defectivehearing 
+        %tr      
+          %td='Any condition in the past 5 years needing medical advice or treatment, or any symptoms or tendency that might necessitate this in the future:' 
+          %td= @accident.medicaltreatment   
+        %tr      
+          %td='If you have answered yes to any of the above questions, please give full details:' 
+          %td= @accident.yesdetails
+        %tr      
+          %td='What accidents have prevented you from attending to your business or occupation for periods of more than 7 days during the past 5 years:' 
+          %td= @accident.accidents
+        %tr      
+          %td='Are you insured:' 
+          %td= @accident.insured 
+        - if @accident.insured == "Yes"  
+          %tr      
+            %td='If yes, please state with whom and for what sum:' 
+            %td= @accident. yesinsured 
+        %tr      
+          %td='Have you ever been declined coverage, given coverage at special terms or had your accident policy not renewed or had it cancelled:' 
+          %td= @accident.declinedcoverage
+        - if @accident.declinedcoverage =="Yes"
+          %tr      
+            %td='If yes, please give details:' 
+            %td= @accident.yesdeclined 
+        %tr      
+          %td='Could you confirm that the maximum Sum Insured for the benefit “Accidental Death” or “Permanent Disablement by Accident” is not higher than 10 times your annual gross income from your principal occupation:' 
+          %td= @accident.confmaxsum
+        %tr      
+          %td='If you have requested the benefit “Accidental Death” could you please state the beneficiaries to be inserted in policy:' 
+          %td= @accident.benefic 
+        %tr      
+          %td='Signature of the Assured:' 
+          %td
+            = @accident.signass 
+            = @accident.dateass
+          
+        - if @accident.signph
+          %tr      
+            %td='Signature of the Policy Holder (if required):' 
+            %td
+              = @accident.signph
+              = @accident.dateph
+            
+        - if @accident.addinfo
+          %tr      
+            %td='Additional Information:' 
+            %td= @accident.addinfo                      
+                                                 
+
+
+    %p
+    -#= link_to "Edit", edit_accident_path(@accident), class: 'btn btn-primary btn-sm'
+    -#= link_to "Destroy", accident_path, :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-danger btn-sm'
+    
  
 

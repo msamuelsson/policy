@@ -1,9 +1,23 @@
 -# in app/views/policies/edit.html.haml
 
-%h4 Edit Policy
+.container
+  %h4.title Edit Policy
 
-= simple_form_for (@policy) do |f|
-  = f.input :policyholder_id, :label => 'Select Policyholder:' do
-    = f.select :policyholder_id, @all_policyholders.map {|p| [p.name,p.id]}
-    
-  = f.submit "Update", class: "btn btn-primary"
+  = simple_form_for (@policy) do |f|
+    .row
+      .col-sm-6
+        = f.input :policyholder_id, :label => 'Select Policyholder:' do
+          = f.select :policyholder_id, @all_policyholders.map {|p| [p.name,p.id]}
+    .row
+      .col-sm-6    
+        = f.label t("createpolicy.insurance_period")
+        .input-group
+          %span.input-group-addon from
+          = f.input :insurancestart, as: :string, :label => false, input_html: { :id => "startPicker"}
+          %span.input-group-addon to 
+          = f.input :insuranceend, as: :string, :label => false, input_html: { :id => "endPicker"}  
+    %br       
+    .form-group-1 
+      = f.submit "Next", :name => "editaccident_button", :class => 'btn btn-primary btn-sm'
+      = f.submit "Last", :name => "confirmation_button", :class => 'btn btn-primary btn-sm'
+      -#= f.submit "Update", class: "btn btn-primary"

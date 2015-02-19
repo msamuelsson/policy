@@ -52,6 +52,17 @@ body {
 	margin-top: 50px;
 }
 
+/*.flag-en {
+	background: url("https://www.brokerstudio.it/wp-sito/wp-content/plugins/qtranslate/flags/gb.png") no-repeat scroll 0% 0% transparent;
+	height: 12px;
+	width: 18px;
+}
+
+.flag-en a {
+	color: transparent;
+}*/
+
+
 #index-box {
 	border-bottom: 2px solid #EEE;
 	border-top: 2px solid #EEE;

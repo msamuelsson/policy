@@ -32,7 +32,7 @@ class PolicyholdersController < ApplicationController
   def update
     @policyholder = Policyholder.find(params[:id])
     if @policyholder.update_attributes(policyholder_params)
-      redirect_to @policyholder, notice: "Successfully updated policyholder."
+      redirect_to policies_path, notice: "Successfully updated policyholder."
     else
       render :edit
     end
@@ -41,7 +41,8 @@ class PolicyholdersController < ApplicationController
   def destroy
     @policyholder = Policyholder.find(params[:id])
     @policyholder.destroy
-    redirect_to policyholders_url, notice: "Successfully destroyed policyholder: #{@policyholder.name}."
+    #redirect_to policyholders_url, notice: "Successfully destroyed policyholder: #{@policyholder.name}."
+    redirect_to policies_url, notice: "Successfully destroyed policyholder: #{@policyholder.name}."
   end
   
   private

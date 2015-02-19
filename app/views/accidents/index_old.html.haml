@@ -1,0 +1,31 @@
+-#  This file is app/views/accidents/index.html.haml
+-#.header
+  =render :partial => 'header_form'
+           
+  
+.container#index-box
+  %h4.title Accidents and Ilness
+  .accident-table 
+    %table#table_id.display
+      %thead
+        %tr
+          %th Id
+          %th Policyholder
+          %th Insured
+          %th Expiring Date
+          %th Action
+      
+      %tbody
+        - @all_accidents.each do |accident|
+          -#- policyholder = Policyholder.where(:id => policy.policyholder_id).first
+          %tr
+            %td= accident.id
+            %td= @policyholder.name
+            %td= accident.name
+            %td= accident.insuranceend
+            %td
+              = link_to "Edit Policy", edit_accident_path(accident), class: "btn btn-primary btn-xs"
+              = link_to "Show Policy", accident_path(accident), class: "btn btn-primary btn-xs"
+            -#%td= link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete
+         
+

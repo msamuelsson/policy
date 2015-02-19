@@ -19,25 +19,20 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-# locales/en
+# en/views/policyholders/_form  _form is used in both new and edit
 
 en:
   policyholders:
-    title: "Policyholders"
-    button_to_newph: "New Policyholder"    
-  
-  policies:
-    title: "Policies"
-    message: "You have no active policies."
-      
-  questionary:
-    title: "Current Questionaries" 
-    policyholder: "Policyholder:"
-    expiring: "Expiring Date:" 
+    form:
+      title: "Policyholder"
+      name: "Full Name"
+      address: "Full Address"
+      fiscal_code: "Fiscal Code or VAT Number"
+      action_new: "NEW"
+      action_edit: "EDIT"
+        
     
-  createpolicy:
-    title: "Fill in a new questionary"
-    select_policy: "Select Policytype:"
-    select_policyholder: "Select Policyholder:"
-    insurance_period: "Insurance Period:"
-   
+  
+    
+  
+
