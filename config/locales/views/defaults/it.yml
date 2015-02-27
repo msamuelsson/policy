@@ -28,7 +28,8 @@ it:
     delete: "Elimina"
     edit: "Modifica"
     show: "Show"
-  
+    next: "Prossimo"
+    last: "Ultimo"
       
   
   

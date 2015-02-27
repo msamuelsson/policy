@@ -19,29 +19,18 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-# en/views/policies/index
+# en/views/policies/
+
 
 en:
-  policies:
-    index:
-      policyholders:
-        title: "Policyholders"
-        button_to_newph: "New Policyholder"    
+  policies: 
+    edit:
+      title: "Edit"
+      select_policyholder: "Select Policyholder:"
+      insurance_period: "Insurance Period:"  
   
-      policies:
-        title: "Policies"
-        message: "You have no active policies."
+     
       
-      questionary:
-        title: "Current Questionaries" 
-        policyholder: "Policyholder:"
-        expiring: "Expiring Date:"
-        
     
-      createpolicy:
-        title: "Fill in a new questionary"
-        select_policy: "Select Policytype:"
-        select_policyholder: "Select Policyholder:"
-        insurance_period: "Insurance Period:"
-         
+      
 

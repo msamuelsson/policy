@@ -4,6 +4,8 @@
 -# New list approach  
 .content 
   .container-fluid#dashboard-mail
+    -if current_user.role == "admin"
+      %h4.title_page User Account for: #{@user.email}
     %ul#translate-2-lang.list-inline
       %li.lang-en.flag-en= link_to_unless_current "English", locale: "en" 
       %li.lang-it.flag-it= link_to_unless_current "Italiano", locale: "it" 
@@ -23,9 +25,11 @@
                     %li= link_to t("defaults.edit"), edit_policyholder_path(policyholder)
                     %li= link_to t("defaults.delete"), policyholder, :confirm => 'Are you sure?', :method => :delete
  
-          %p= button_to t("policyholders.button_to_newph"), new_policyholder_path, :method => :get, class: 'btn btn-primary'          
-
-        .contact-form#index-box
+          -#%p= button_to t("policyholders.button_to_newph"), new_user_policyholder_path(:user_id => "#{@user.id}"), :method => :get, class: 'btn btn-primary'          
+          - unless current_user.role == "admin"
+            %p= button_to t("policyholders.button_to_newph"), new_policyholder_path, :method => :get, class: 'btn btn-primary'        
+        
+        -#.contact-form#index-box
           %h4.title Contact Us 
           -#%p= button_to 'Contact Form', new_contact_path, :method => :get, class: 'btn btn-primary'  
           = simple_form_for Contact.new, :url => contacts_path do |f|
@@ -75,7 +79,7 @@
 
         .create-policy#index-box
           %h4.title= t "createpolicy.title"
-          = simple_form_for @new_policy, :url => { :action => "create_policy" } do |f|
+          = simple_form_for @new_policy, :url => {:controller => "policies", :action => "create_policy" } do |f|
             .row
               .col-md-4
                 = f.input :policytype, :label => t("createpolicy.select_policy") do

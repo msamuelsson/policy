@@ -1,30 +1,31 @@
--#  This file is app/views/policies/index.html.haml
+-#  This file is app/views/policies/dashboard.html.haml
 -#.header
   =render :partial => 'header_form'
   
 -# New list approach  
 .content 
   .container-fluid#dashboard-main
+    %h4.title Agent's Dashboard
+    %ul#translate-2-lang.list-inline
+      %li.lang-en.flag-en= link_to_unless_current "English", locale: "en" 
+      %li.lang-it.flag-it= link_to_unless_current "Italiano", locale: "it" 
     .row
       .col-md-4
         .policyholders-content#index-box
-          %h4.title My Policyholders
+          %h4.title All active users
           %ul#policy-list
-            - @all_policyholders.each do |policyholder|
+            - @all_users.each do |user|
               %li#policy-item
-                -#%p= policyholder.id
-                %p= policyholder.name
-                %p= policyholder.address
-                %p= policyholder.vatnumber
+                %p= link_to "#{user.email}", user_policies_path(user)
                 .row  
                   %ul.list-inline#policy-action
-                    %li= link_to "Edit", edit_policyholder_path(policyholder)
-                    %li= link_to "Destroy", policyholder, :confirm => 'Are you sure?', :method => :delete
+                    %li= link_to "Invite User", new_user_invitation_path(user)
+                    %li= link_to "Delete", user_path(user), :confirm => 'Are you sure?', :method => :delete 
+                    -#%li= link_to "Destroy", policyholder, :confirm => 'Are you sure?', :method => :delete
  
-          %p= button_to 'New Policyholder', new_policyholder_path, :method => :get, class: 'btn btn-primary'          
-
+          
         .contact-form#index-box
-          %h4.title Contact Us 
+          %h4.title Registration Invitation
           -#%p= button_to 'Contact Form', new_contact_path, :method => :get, class: 'btn btn-primary'  
           = simple_form_for Contact.new, :url => contacts_path do |f|
             = f.input :name, :required => true
@@ -44,7 +45,7 @@
             info@brokerstudio.it Skype: brokerstudio.snc 
                 
       .col-md-8
-        .policies-content#index-box
+        -#.policies-content#index-box
           %h4.title My Policies
           %ul#policy-list
             - @all_policies.each do |policy|
@@ -67,7 +68,7 @@
                     %li= link_to "Show Policy", policy_path(policy)
                     %li= link_to "Destroy Policy", policy_path(policy), :confirm => 'Are you sure?', :method => :delete   
 
-        .create-policy#index-box
+        -#.create-policy#index-box
           %h4.title Create a new policy
           .row
             = simple_form_for @new_policy, :url => { :action => "create_policy" } do |f|

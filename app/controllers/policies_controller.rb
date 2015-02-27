@@ -1,12 +1,15 @@
 class PoliciesController < ApplicationController
   
-  
   def index
-   #@all_policies = Policy.all
-   @all_policies = Policy.where(:user_id => current_user.id)
-   @all_policyholders = Policyholder.where(:user_id => current_user.id)
-   @new_policy = Policy.new 
-   #render :dashbord
+    if current_user.role == "admin"
+      redirect_to users_path
+    else
+      @all_policies = Policy.where(:user_id => current_user.id)
+      @user = User.find_by_id(current_user.id)
+      @all_policyholders = @user.policyholders
+      #@all_policyholders = Policyholder.where(:user_id => current_user.id)
+      @new_policy = Policy.new 
+    end
   end
   
   def create_policy
@@ -39,6 +42,7 @@ class PoliciesController < ApplicationController
       end   
   end
   
+  #Not used
   def new
     @policyholder = Policyholder.find_by_id(params[:policyholder_id])
     @policy ||= @policyholder.policies.new

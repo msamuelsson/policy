@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  
+  
   devise_for :users
+ 
   
   devise_scope :user do
     authenticated :user do
@@ -66,6 +69,13 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   
+    
+  
+    scope :path => "(:locale)", :shallow_path => "(:locale)", :locale => /en|it/ do
+      resources :users, only: [:index, :show, :destroy], :shallow => true do#only: [:index, :show, :destroy],
+        resources :policyholders, only: :new
+      end  
+    end
   
     scope :path => "(:locale)", :shallow_path => "(:locale)", :locale => /en|it/ do
       resources :policyholders, :shallow => true do
@@ -97,6 +107,7 @@ Rails.application.routes.draw do
     #Route that posts 'Create Policy' form
     
     post '/policies/create_policy'
+    #get '/policies/user_policies'
     
     get '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
     get '', to: redirect("/#{I18n.default_locale}/policies")

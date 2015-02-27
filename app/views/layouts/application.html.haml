@@ -2,6 +2,8 @@
 %html
   %head
     %title Policies
+    = stylesheet_link_tag "http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     -#= stylesheet_link_tag 'application'
     = stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css"
@@ -23,6 +25,7 @@
     #warning.message.alert.alert-warning= flash[:warning]
   - elsif flash[:alert]
     #alert.message.alert.alert-warning= flash[:alert]  
+    
   = render :partial => 'shared/navbar_header'  
-  
+   
   = yield

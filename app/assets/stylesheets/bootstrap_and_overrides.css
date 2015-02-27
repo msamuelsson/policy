@@ -5,6 +5,9 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
+ 
+
+ 
 .container-fluid#navbar {
 	/*height: 80px;*/
 }
@@ -22,6 +25,28 @@ body {
  	font-family: "PT Sans",sans-serif;
  	padding-bottom: 10px;
  	border-bottom: 1px solid #EEE;
+ 	text-transform: uppercase;
+ 	
+}
+
+.title_without_border {
+ 	color: #444;
+ 	font-size: 16px;
+ 	font-weight: bold;
+ 	font-family: "PT Sans",sans-serif;
+ 	padding-top: 10px;
+ 	padding-bottom: 8px;
+ 	text-transform: uppercase;	
+}
+
+/* Title for pages*/
+.title_page {
+ 	color: #1790C7;
+ 	font-size: 16px;
+ 	font-weight: bold;
+ 	font-family: "PT Sans",sans-serif;
+ 	padding-bottom: 20px;
+ 	/*border-bottom: 1px solid #EEE;*/
  	text-transform: uppercase;
  	
 }

@@ -21,26 +21,12 @@
 
 # locales/it
 
+# it/views/policies/
+
 it:
-  policyholders:
-    title: "Contraenti"
-    button_to_newph: "Nuovo Contraente" 
-     
   policies:
-    title: "Policies"
-    message: "You have no active policies."
-      
-  questionary:
-    title: "Current questionaries" 
-    policyholder: "Policyholder:"
-    expiring: "Expiring Date:"
-          
-    
-  createpolicy:
-    title: "Fill in a new questionary"
-    select_policy: "Select Policytype"
-    select_policyholder: "Select Policyholder"
-    insurance_period: "Insurance Period:"
-    
-       
+    edit:
+      title: "Modifica"
+      select_policyholder: "Select Policyholder:"
+      insurance_period: "Insurance Period:"  
 

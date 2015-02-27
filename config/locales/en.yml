@@ -23,7 +23,7 @@
 
 en:
   policyholders:
-    title: "Policyholders"
+    title: "Policyholders"  
     button_to_newph: "New Policyholder"    
   
   policies:
@@ -41,3 +41,4 @@ en:
     select_policyholder: "Select Policyholder:"
     insurance_period: "Insurance Period:"
    
+  

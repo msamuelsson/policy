@@ -1,0 +1,26 @@
+-#  This file is app/views/users/password/edit.html.haml
+
+.container
+  %h2.title Change your password
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| 
+    = f.error_notification
+    .form-inputs
+      .row
+        .col-sm-5
+          = f.input :reset_password_token, as: :hidden
+          = f.full_error :reset_password_token 
+    .form-inputs      
+      .row
+        .col-sm-5
+          = f.input :password, label: "New password", required: true, autofocus: true
+      .row
+        .col-sm-5    
+          = f.input :password_confirmation, label: "Confirm your new password", required: true 
+
+
+    .form-actions
+      .row
+        .col-sm-5
+          = f.button :submit, "Change my password"
+
+  -#= render "users/shared/links" %>

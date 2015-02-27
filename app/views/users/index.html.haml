@@ -1,0 +1,39 @@
+.col-md-10.col-md-offset-1
+  %h4.title_without_border Customer
+  .panel.panel-default
+    .panel-body
+      %table.table.table-striped
+        %thead
+          %tr
+            -#%th Name
+            %th Email
+            %th Invited By
+            %th Status
+            %th 
+        %tbody
+          - @users.each do |user|
+            - inviter = User.where(:id => user.invited_by_id).first
+            %tr
+              - if user.encrypted_password?
+                %td= link_to "#{user.email}", user_path(user)
+              - else
+                %td= "#{user.email}"
+              - if inviter != nil
+                %td= inviter.email
+              - else
+                %td 
+              %td= user_status(user)    
+              %td= link_to "Delete", user_path(user), :confirm => 'Are you sure?', :method => :delete 
+      
+      %h4.title_without_border Invite User
+      = simple_form_for(User.new, url: user_invitation_path) do |f| 
+        .row
+          .col-sm-7            
+            = f.input :email, placeholder: 'Email', label: false
+          .col-sm-4 
+            = f.button :submit, 'Invite User', class: 'btn-primary'
+        
+    
+        
+        
+  
