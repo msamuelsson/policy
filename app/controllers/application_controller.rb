@@ -8,12 +8,16 @@ class ApplicationController < ActionController::Base
   
   #I18n
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = params[:locale]
+    #I18n.locale = params[:locale] || I18n.default_locale
+    #Rails.application.routes.default_url_options[:locale]= I18n.locale
   end
   
-  def default_url_options(options = {})
-    {locale: I18n.locale}
+  #def default_url_options(options = {})
+    #{locale: I18n.locale}
+  #end
+  def self.default_url_options(options={})
+    options.merge({ :locale =>  I18n.locale })
   end
-
 
 end

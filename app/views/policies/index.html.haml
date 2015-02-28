@@ -6,14 +6,15 @@
   .container-fluid#dashboard-mail
     -if current_user.role == "admin"
       %h4.title_page User Account for: #{@user.email}
-    %ul#translate-2-lang.list-inline
-      %li.lang-en.flag-en= link_to_unless_current "English", locale: "en" 
-      %li.lang-it.flag-it= link_to_unless_current "Italiano", locale: "it" 
+    -#%ul#translate-2-lang.list-inline
+      -#%li.lang-en.flag-en= link_to_unless_current "English", locale: "en" 
+      -#%li.lang-it.flag-it= link_to_unless_current "Italiano", locale: "it" 
     .row
       .col-md-4
         .policyholders-content#index-box
           %h4.title= t "policyholders.title"
           %ul#policy-list
+          - if @all_policyholders != nil
             - @all_policyholders.each do |policyholder|
               %li#policy-item
                 -#%p= policyholder.id
@@ -65,8 +66,9 @@
                 .row
                   .col-md-2
                     %p= t "questionary.policyholder"
-                  .col-md-6     
-                    %p= policyholder.name
+                  .col-md-6 
+                    -if policyholder != nil    
+                      %p= policyholder.name
                 .row 
                   .col-md-2
                     %p= t "questionary.expiring"

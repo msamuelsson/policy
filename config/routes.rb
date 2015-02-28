@@ -1,19 +1,21 @@
 Rails.application.routes.draw do
   
   
-  devise_for :users
- 
-  
-  devise_scope :user do
-    authenticated :user do
-      root 'policies#index', as: :authenticated_root
-    end
-
-    unauthenticated do
-      root 'devise/sessions#new', as: :unauthenticated_root
-    end
+  scope :path => "(:locale)", :locale => /en|it/ do
+    devise_for :users
+    
+    devise_scope :user do
+      authenticated :user do
+        root 'policies#index', as: :authenticated_root
+      end
+      
+      unauthenticated do
+        root 'devise/sessions#new', as: :unauthenticated_root    
+      end
+    end  
   end
-
+  
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -87,8 +89,6 @@ Rails.application.routes.draw do
       resources :policies, :shallow => true do
         resources :accidents
         resources :fvplants
-        
-        root :to => "policies#index"
       end
     end
    
@@ -100,20 +100,20 @@ Rails.application.routes.draw do
    
     #Mail Form
     #resources :contacts
-    match '/contacts',     to: 'contacts#new',   via: 'get'
-    resources "contacts", only: [:new, :create]
+    #match '/contacts',     to: 'contacts#new',   via: 'get'
+    #resources "contacts", only: [:new, :create]
    
    
     #Route that posts 'Create Policy' form
-    
     post '/policies/create_policy'
-    #get '/policies/user_policies'
     
-    get '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
-    get '', to: redirect("/#{I18n.default_locale}/policies")
-
     
-    #get '/:locale' => 'policies#index'
-    #root :to => "policies#index" 
+    #get '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
+    #get '', to: redirect("/#{I18n.default_locale}/policies"
+    
+    get '/:locale' => 'policies#index'
+    root :to => "policies#index" 
+    
+    
    
   end

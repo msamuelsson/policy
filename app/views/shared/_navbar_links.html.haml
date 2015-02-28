@@ -11,3 +11,5 @@
   - if user_signed_in?
     %li= link_to 'Home', policies_path
     -#%li= link_to 'My Policyholders', policyholders_path
+  %li.lang-en.flag-en= link_to_unless_current "English", locale: "en" 
+  %li.lang-it.flag-it= link_to_unless_current "Italiano", locale: "it"   
