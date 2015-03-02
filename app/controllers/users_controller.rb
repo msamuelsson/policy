@@ -8,7 +8,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @all_policies = Policy.where(:user_id => @user.id)
-    #@all_policyholders = Policyholder.where(:user_id => @user.id)
     @all_policyholders = @user.policyholders
     @new_policy = Policy.new 
     render "policies/index"

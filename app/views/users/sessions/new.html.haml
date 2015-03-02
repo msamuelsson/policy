@@ -20,7 +20,7 @@
       .col-sm-5    
         -#= f.input :remember_me, as: :boolean if devise_mapping.rememberable?
     .form-actions
-      = f.button :submit, t('.sign_in', :default => "Sign in"), class: "btn btn-primary btn-sm"
+      = f.button :submit, "Sign in", class: "btn btn-primary btn-sm"
     
   -#= render "users/shared/links"
   = link_to "Forgot your password?", new_password_path(resource_name)

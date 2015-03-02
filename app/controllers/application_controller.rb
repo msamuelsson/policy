@@ -6,11 +6,10 @@ class ApplicationController < ActionController::Base
   #Authentication with Devise
   before_filter :authenticate_user!, :set_locale
   
-  #I18n
+  #I18n. I18n.default_locale is set to "it"
   def set_locale
     I18n.locale = params[:locale]
     #I18n.locale = params[:locale] || I18n.default_locale
-    #Rails.application.routes.default_url_options[:locale]= I18n.locale
   end
   
   #def default_url_options(options = {})
